@@ -25,6 +25,8 @@ public class SignUp extends javax.swing.JFrame {
         jbtnLogin = new javax.swing.JButton();
         jtfFullName = new javax.swing.JTextField();
         jlEmail1 = new javax.swing.JLabel();
+        jlRegisterRestaurantMessage = new javax.swing.JLabel();
+        jbtnRegisterRestaurant = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIGN UP");
@@ -127,6 +129,20 @@ public class SignUp extends javax.swing.JFrame {
         jlEmail1.setForeground(new java.awt.Color(51, 51, 51));
         jlEmail1.setText("Full Name");
 
+        jlRegisterRestaurantMessage.setForeground(new java.awt.Color(51, 51, 51));
+        jlRegisterRestaurantMessage.setText("I'm a restaurant");
+
+        jbtnRegisterRestaurant.setBackground(new java.awt.Color(255, 255, 255));
+        jbtnRegisterRestaurant.setForeground(new java.awt.Color(0, 102, 102));
+        jbtnRegisterRestaurant.setText("Register restaurant");
+        jbtnRegisterRestaurant.setBorder(null);
+        jbtnRegisterRestaurant.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbtnRegisterRestaurant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRegisterRestaurantActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jplRightLayout = new javax.swing.GroupLayout(jplRight);
         jplRight.setLayout(jplRightLayout);
         jplRightLayout.setHorizontalGroup(
@@ -149,7 +165,11 @@ public class SignUp extends javax.swing.JFrame {
                     .addGroup(jplRightLayout.createSequentialGroup()
                         .addComponent(jlLoginMessage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnLogin)))
+                        .addComponent(jbtnLogin))
+                    .addGroup(jplRightLayout.createSequentialGroup()
+                        .addComponent(jlRegisterRestaurantMessage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnRegisterRestaurant)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jplRightLayout.setVerticalGroup(
@@ -157,7 +177,7 @@ public class SignUp extends javax.swing.JFrame {
             .addGroup(jplRightLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(lbSignUp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jlEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfNewEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,11 +191,15 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(jNewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jplRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlLoginMessage)
                     .addComponent(jbtnLogin))
-                .addGap(66, 66, 66))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jplRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlRegisterRestaurantMessage)
+                    .addComponent(jbtnRegisterRestaurant))
+                .addGap(67, 67, 67))
         );
 
         jPanel3.add(jplRight);
@@ -222,6 +246,15 @@ public class SignUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnRegisterActionPerformed
 
+    private void jbtnRegisterRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterRestaurantActionPerformed
+        SignUpRestaurant SignUpFrame = new SignUpRestaurant();
+        
+        SignUpFrame.setVisible(true);
+        SignUpFrame.pack();
+        SignUpFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jbtnRegisterRestaurantActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
@@ -229,10 +262,12 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton jbtnLogin;
     private javax.swing.JButton jbtnRegister;
+    private javax.swing.JButton jbtnRegisterRestaurant;
     private javax.swing.JLabel jlEmail;
     private javax.swing.JLabel jlEmail1;
     private javax.swing.JLabel jlLoginMessage;
     private javax.swing.JLabel jlPassword;
+    private javax.swing.JLabel jlRegisterRestaurantMessage;
     private javax.swing.JPanel jplLeft;
     private javax.swing.JPanel jplRight;
     private javax.swing.JTextField jtfFullName;
