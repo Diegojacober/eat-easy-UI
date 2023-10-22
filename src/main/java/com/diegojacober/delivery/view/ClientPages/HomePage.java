@@ -1,12 +1,18 @@
 package com.diegojacober.delivery.view.ClientPages;
 
+import com.diegojacober.delivery.controller.RestaurantController;
+import com.diegojacober.delivery.model.RestaurantModel;
 import com.diegojacober.delivery.view.ClientView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,31 +20,35 @@ import javax.swing.*;
  */
 public class HomePage extends ClientView {
 
+//   private RestaurantController controller = new RestaurantController();
     private JPanel panel;
     private JPanel centeredPanel;
     private JScrollPane panelScrollable;
-    private int currentPage = 1;
+    private int currentPage = 0;
 
     public HomePage() {
         jlPageTitle.setText("Available Restaurants");
     }
 
-    private void loadRestaurants(boolean page) {
+    private void loadRestaurants(boolean page) throws SQLException {
+        RestaurantController controller = new RestaurantController();
+
         jpContent.remove(panelScrollable);
         panel.removeAll();
         panelScrollable.setVisible(false);
 
-        if (!page && currentPage > 1) {
+        if (!page && currentPage > 0) {
             currentPage--;
-        } else if (!page && currentPage == 1) {
+        } else if (!page && currentPage == 0) {
 
         } else {
             currentPage++;
         }
 
-        for (Integer i = 0; i < 12; i++) {
-            Integer id = i;
-            String txt = "Hello - " + i + ", page " + currentPage;
+        List<RestaurantModel> availableRestaurants = controller.controllerRetrieve(new RestaurantModel(), currentPage);
+
+        for (RestaurantModel restaurant : availableRestaurants) {
+            String txt = restaurant.getName();
             JButton btn = new JButton(txt);
             btn.setPreferredSize(new Dimension(950, 100));
 
@@ -56,7 +66,7 @@ public class HomePage extends ClientView {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // Ação a ser executada quando o botão for clicado
-                    loadRestaurant(txt, id);
+                    loadRestaurant(txt, restaurant.getId());
                 }
             });
 
@@ -81,8 +91,7 @@ public class HomePage extends ClientView {
                     btn.setForeground(new java.awt.Color(51, 51, 51));
                 }
 
-            }
-            );
+            });
 
             panel.add(btn);
             panel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -90,6 +99,7 @@ public class HomePage extends ClientView {
 
         jpContent.add(panelScrollable, BorderLayout.CENTER);
         panelScrollable.setVisible(true);
+
     }
 
     private void loadRestaurant(String name, Integer id) {
@@ -119,17 +129,29 @@ public class HomePage extends ClientView {
     @Override
     public void initPageComponents() {
         loadComponents();
-        loadRestaurants(false);
+        try {
+            loadRestaurants(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void nextButton() {
-        loadRestaurants(true);
+        try {
+            loadRestaurants(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void backButton() {
-        loadRestaurants(false);
+        try {
+            loadRestaurants(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
