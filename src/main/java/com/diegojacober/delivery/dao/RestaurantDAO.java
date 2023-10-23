@@ -38,7 +38,7 @@ public class RestaurantDAO {
     public List<RestaurantModel> retrieve(RestaurantModel restaurant, Integer page) throws SQLException {
         List<RestaurantModel> restaurants = new ArrayList<>();
         if (restaurant.getId() == null) {
-            query = "SELECT * FROM restaurants order by created_at DESC LIMIT 10 OFFSET "+ page;
+            query = "SELECT * FROM restaurants order by created_at DESC LIMIT 10 OFFSET "+ (page * 10);
         } else {
             query = "SELECT * FROM restaurants WHERE id=" + restaurant.getId();
         }
@@ -72,6 +72,23 @@ public class RestaurantDAO {
     }
     
     public Integer countRows() throws SQLException{
-        return 0;
+        
+        query = "SELECT COUNT(*) as t_rows FROM restaurants";
+        
+        try {
+            stmt = DBConnection.openConnection().prepareStatement(query);
+            resultSet = stmt.executeQuery();
+            
+            
+            while(resultSet.next()) {
+                return resultSet.getInt("t_rows");
+            }
+
+            stmt.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return 0;  
     }
 }

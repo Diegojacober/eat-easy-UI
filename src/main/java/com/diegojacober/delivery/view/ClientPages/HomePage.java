@@ -32,10 +32,13 @@ public class HomePage extends ClientView {
 
     private void loadRestaurants(boolean page) throws SQLException {
         RestaurantController controller = new RestaurantController();
-
+        Integer rows = controller.countRows();
+        
         jpContent.remove(panelScrollable);
         panel.removeAll();
         panelScrollable.setVisible(false);
+        jBtnNextArrow.setVisible(true);
+        jBtnBackArrow.setVisible(true);
 
         if (!page && currentPage > 0) {
             currentPage--;
@@ -44,55 +47,23 @@ public class HomePage extends ClientView {
         } else {
             currentPage++;
         }
+        
+        Integer rowsToShow = currentPage > 1 ? rows - (currentPage * 10) : rows - ((currentPage + 1) * 10);
+        if (rowsToShow < 0) {
+            jBtnNextArrow.setVisible(false);
+        }
+        
+        if (currentPage == 0) {
+            jBtnBackArrow.setVisible(false);
+        }
+        
 
         List<RestaurantModel> availableRestaurants = controller.controllerRetrieve(new RestaurantModel(), currentPage);
 
         for (RestaurantModel restaurant : availableRestaurants) {
             String txt = restaurant.getName();
-            JButton btn = new JButton(txt);
-            btn.setPreferredSize(new Dimension(950, 100));
 
-            btn.setMinimumSize(new Dimension(950, 100));
-            btn.setMaximumSize(new Dimension(950, 100));
-
-            Color bgColor = new Color(191, 191, 191);
-
-            btn.setBackground(bgColor);
-            btn.setFont(new Font("Segoe UI", 0, 24));
-            btn.setForeground(new Color(51, 51, 51));
-            btn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    // Ação a ser executada quando o botão for clicado
-                    loadRestaurant(txt, restaurant.getId());
-                }
-            });
-
-            btn.addMouseListener(
-                    new MouseAdapter() {
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    Color newColor = new Color(0, 102, 102);
-
-                    btn.setBackground(new java.awt.Color(0, 102, 102));
-                    btn.setForeground(new java.awt.Color(255, 255, 255));
-                }
-
-            }
-            );
-
-            btn.addMouseListener(
-                    new MouseAdapter() {
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    btn.setBackground(new java.awt.Color(191, 191, 191));
-                    btn.setForeground(new java.awt.Color(51, 51, 51));
-                }
-
-            });
-
+            JButton btn = createButton(txt, restaurant.getId());
             panel.add(btn);
             panel.add(Box.createRigidArea(new Dimension(0, 20)));
         }
@@ -100,6 +71,54 @@ public class HomePage extends ClientView {
         jpContent.add(panelScrollable, BorderLayout.CENTER);
         panelScrollable.setVisible(true);
 
+    }
+
+    private JButton createButton(String txt, Integer id) {
+        JButton btn = new JButton(txt);
+        btn.setPreferredSize(new Dimension(950, 100));
+
+        btn.setMinimumSize(new Dimension(950, 100));
+        btn.setMaximumSize(new Dimension(950, 100));
+
+        Color bgColor = new Color(191, 191, 191);
+
+        btn.setBackground(bgColor);
+        btn.setFont(new Font("Segoe UI", 0, 24));
+        btn.setForeground(new Color(51, 51, 51));
+        btn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Ação a ser executada quando o botão for clicado
+                loadRestaurant(txt, id);
+            }
+        });
+
+        btn.addMouseListener(
+                new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                Color newColor = new Color(0, 102, 102);
+
+                btn.setBackground(new java.awt.Color(0, 102, 102));
+                btn.setForeground(new java.awt.Color(255, 255, 255));
+            }
+
+        }
+        );
+
+        btn.addMouseListener(
+                new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btn.setBackground(new java.awt.Color(191, 191, 191));
+                btn.setForeground(new java.awt.Color(51, 51, 51));
+            }
+
+        });
+        
+        return btn;
     }
 
     private void loadRestaurant(String name, Integer id) {

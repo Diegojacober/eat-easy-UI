@@ -24,5 +24,9 @@ public class RestaurantController {
     public List<RestaurantModel> controllerRetrieve(RestaurantModel restaurant, Integer page) throws SQLException {
         return dao.retrieve(restaurant, page);
     }
+    
+    public Integer countRows() throws SQLException {
+        return dao.countRows();
+    }
 
 }
