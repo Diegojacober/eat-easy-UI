@@ -1,11 +1,11 @@
 package com.diegojacober.delivery.view;
 
+import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.ClientPages.HomePage;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
-    
 
     public Login() {
         initComponents();
@@ -190,7 +190,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
         SignUp SignUpFrame = new SignUp();
-        
+
         SignUpFrame.setVisible(true);
         SignUpFrame.pack();
         SignUpFrame.setLocationRelativeTo(null);
@@ -199,21 +199,25 @@ public class Login extends javax.swing.JFrame {
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
         // Faz todo o processo de validar o login
-        
-        if (UserService.login(jtfEmail.getText(), String.valueOf(jPasswordField.getPassword())).getEmail() != null) {
-            ClientView clientView = new HomePage();
-            clientView.setVisible(true);
-            clientView.pack();
-            clientView.setLocationRelativeTo(null);
-            this.dispose();
+        UserModel user = UserService.login(jtfEmail.getText(), String.valueOf(jPasswordField.getPassword()));
+        if (user.getEmail() != null) {
+            if (UserService.GetRoleLoggedUser(user).equals("ADMIn")) {
+
+            } else {
+                ClientView clientView = new HomePage();
+                clientView.setVisible(true);
+                clientView.pack();
+                clientView.setLocationRelativeTo(null);
+                this.dispose();
+            }
+
         } else {
-                JOptionPane.showMessageDialog(null, "Não foi possível fazer login");
+            JOptionPane.showMessageDialog(null, "Não foi possível fazer login");
         }
-        
+
         // Logo apos verifica qual o tipo do perfil
-        
         // abre interface correta
-        
+
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
     /**
