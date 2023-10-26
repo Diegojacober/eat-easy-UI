@@ -1,8 +1,11 @@
 package com.diegojacober.delivery.view;
 
+import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.ClientPages.HomePage;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
+    
 
     public Login() {
         initComponents();
@@ -197,14 +200,20 @@ public class Login extends javax.swing.JFrame {
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
         // Faz todo o processo de validar o login
         
+        if (UserService.login(jtfEmail.getText(), String.valueOf(jPasswordField.getPassword())).getEmail() != null) {
+            ClientView clientView = new HomePage();
+            clientView.setVisible(true);
+            clientView.pack();
+            clientView.setLocationRelativeTo(null);
+            this.dispose();
+        } else {
+                JOptionPane.showMessageDialog(null, "Não foi possível fazer login");
+        }
+        
         // Logo apos verifica qual o tipo do perfil
         
         // abre interface correta
-        ClientView clientView = new HomePage();
-        clientView.setVisible(true);
-        clientView.pack();
-        clientView.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
     /**
