@@ -4,11 +4,15 @@ import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.ClientPages.HomePageClient;
 import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    public Login() {
+    public Login() throws IOException {
+
+        this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
         initComponents();
     }
 
@@ -190,12 +194,16 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldActionPerformed
 
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
-        SignUp SignUpFrame = new SignUp();
-
-        SignUpFrame.setVisible(true);
-        SignUpFrame.pack();
-        SignUpFrame.setLocationRelativeTo(null);
-        this.dispose();
+        SignUp SignUpFrame;
+        try {
+            SignUpFrame = new SignUp();
+            SignUpFrame.setVisible(true);
+            SignUpFrame.pack();
+            SignUpFrame.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            System.err.println("ERRO: " + ex.getMessage());
+        }
     }//GEN-LAST:event_jbtnRegisterActionPerformed
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
@@ -203,17 +211,29 @@ public class Login extends javax.swing.JFrame {
         UserModel user = UserService.login(jtfEmail.getText(), String.valueOf(jPasswordField.getPassword()));
         if (user.getEmail() != null) {
             if (UserService.GetRoleLoggedUser(user).equals("ADMIN")) {
-                RestaurantView restaurantView = new HomePageRestaurant(user);
-                restaurantView.setVisible(true);
-                restaurantView.pack();
-                restaurantView.setLocationRelativeTo(null);
-                this.dispose();
+                RestaurantView restaurantView;
+                try {
+                    restaurantView = new HomePageRestaurant(user);
+                    restaurantView.setVisible(true);
+                    restaurantView.pack();
+                    restaurantView.setLocationRelativeTo(null);
+                    this.dispose();
+                } catch (IOException ex) {
+                    System.err.println("ERRO: " + ex.getMessage());
+                }
+
             } else {
-                ClientView clientView = new HomePageClient(user);
-                clientView.setVisible(true);
-                clientView.pack();
-                clientView.setLocationRelativeTo(null);
-                this.dispose();
+                ClientView clientView;
+                try {
+                    clientView = new HomePageClient(user);
+                    clientView.setVisible(true);
+                    clientView.pack();
+                    clientView.setLocationRelativeTo(null);
+                    this.dispose();
+                } catch (IOException ex) {
+                    System.err.println("ERRO: " + ex.getMessage());
+                }
+
             }
 
         } else {
@@ -221,40 +241,6 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

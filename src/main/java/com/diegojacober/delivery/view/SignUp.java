@@ -3,10 +3,13 @@ package com.diegojacober.delivery.view;
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.ClientPages.HomePageClient;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class SignUp extends javax.swing.JFrame {
 
-    public SignUp() {
+    public SignUp() throws IOException {
+        this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
         initComponents();
     }
 
@@ -233,12 +236,16 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jNewPasswordFieldActionPerformed
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
-        Login LoginFrame = new Login();
-
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null);
-        this.dispose();
+        Login loginPage;
+        try {
+            loginPage = new Login();
+            loginPage.setVisible(true);
+            loginPage.pack();
+            loginPage.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            System.err.println("ERRO: " + ex.getMessage());
+        }
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
     private void jtfFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfFullNameActionPerformed
@@ -248,21 +255,33 @@ public class SignUp extends javax.swing.JFrame {
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
         UserModel user = UserService.registerClient(jtfFullName.getText(), jtfNewEmail.getText(), String.valueOf(jNewPasswordField.getPassword()));
         if (user.getAccessToken() != null) {
-            ClientView clientView = new HomePageClient(user);
-            clientView.setVisible(true);
-            clientView.pack();
-            clientView.setLocationRelativeTo(null);
-            this.dispose();
+            ClientView clientView;
+            try {
+                clientView = new HomePageClient(user);
+                clientView.setVisible(true);
+                clientView.pack();
+                clientView.setLocationRelativeTo(null);
+                this.dispose();
+            } catch (IOException ex) {
+                System.err.println("ERRO: " + ex.getMessage());
+            }
+
         }
     }//GEN-LAST:event_jbtnRegisterActionPerformed
 
     private void jbtnRegisterRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterRestaurantActionPerformed
-        SignUpRestaurant SignUpFrame = new SignUpRestaurant();
+        SignUpRestaurant SignUpFrame;
+        try {
+            SignUpFrame = new SignUpRestaurant();
+            SignUpFrame.setVisible(true);
+            SignUpFrame.pack();
+            SignUpFrame.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            System.err.println("ERRO: " + ex.getMessage());
+        }
 
-        SignUpFrame.setVisible(true);
-        SignUpFrame.pack();
-        SignUpFrame.setLocationRelativeTo(null);
-        this.dispose();
+
     }//GEN-LAST:event_jbtnRegisterRestaurantActionPerformed
 
 

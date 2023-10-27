@@ -4,8 +4,6 @@ import com.diegojacober.delivery.dao.RestaurantDAO;
 import com.diegojacober.delivery.model.RestaurantModel;
 import com.diegojacober.delivery.model.UserModel;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -162,7 +160,7 @@ public class UserService {
             }
         }
     }
-    
+
     public static UserModel registerRestaurant(String name, String email, String password, String locationX, String locationY) {
         String path = URL + "/auth/register";
 
@@ -198,9 +196,9 @@ public class UserService {
 
             String accessToken = jsonResponse.get("access_token").toString();
             String refreshToken = jsonResponse.get("refresh_token").toString();
-            
+
             RestaurantDAO restaurantDAO = new RestaurantDAO();
-            
+
             try {
                 RestaurantModel restaurant = new RestaurantModel(null, name, LocalDateTime.now(), locationX, locationY);
                 restaurantDAO.save(restaurant);

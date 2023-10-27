@@ -1,8 +1,6 @@
 package com.diegojacober.delivery.view.ClientPages;
 
-
 public class DoOrder extends javax.swing.JFrame {
-
 
     public DoOrder(String name, Integer id) {
         initComponents();

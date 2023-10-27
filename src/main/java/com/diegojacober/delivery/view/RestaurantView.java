@@ -3,7 +3,8 @@ package com.diegojacober.delivery.view;
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
-
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public abstract class RestaurantView extends javax.swing.JFrame {
 
@@ -14,7 +15,8 @@ public abstract class RestaurantView extends javax.swing.JFrame {
     public abstract void backButton();
     public UserModel loggedUser;
 
-    public RestaurantView(UserModel user) {
+    public RestaurantView(UserModel user) throws IOException {
+        this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
         initComponents();
         initPageComponents();
         this.loggedUser = user;
@@ -176,21 +178,32 @@ public abstract class RestaurantView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHomeActionPerformed
-        HomePageRestaurant HomePageFrame = new HomePageRestaurant(loggedUser);
+        HomePageRestaurant HomePageFrame;
+        try {
+            HomePageFrame = new HomePageRestaurant(loggedUser);
+            HomePageFrame.setVisible(true);
+            HomePageFrame.pack();
+            HomePageFrame.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            System.err.println("ERRO: " + ex.getMessage());
+        }
 
-        HomePageFrame.setVisible(true);
-        HomePageFrame.pack();
-        HomePageFrame.setLocationRelativeTo(null);
-        this.dispose();
+
     }//GEN-LAST:event_jbtnHomeActionPerformed
 
     private void jbtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogoutActionPerformed
         if (UserService.logout(loggedUser)) {
-            Login loginPage = new Login();
-            loginPage.setVisible(true);
-            loginPage.pack();
-            loginPage.setLocationRelativeTo(null);
-            this.dispose();
+            Login loginPage;
+            try {
+                loginPage = new Login();
+                loginPage.setVisible(true);
+                loginPage.pack();
+                loginPage.setLocationRelativeTo(null);
+                this.dispose();
+            } catch (IOException ex) {
+                System.err.println("ERRO: " + ex.getMessage());
+            }
         }
     }//GEN-LAST:event_jbtnLogoutActionPerformed
 

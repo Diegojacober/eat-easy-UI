@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.*;
 import java.util.List;
@@ -27,7 +28,7 @@ public class HomePageClient extends ClientView {
     private JScrollPane panelScrollable;
     private int currentPage = 0;
 
-    public HomePageClient(UserModel user) {
+    public HomePageClient(UserModel user) throws IOException {
         super(user);
         jlPageTitle.setText("Available Restaurants");
     }
@@ -35,7 +36,7 @@ public class HomePageClient extends ClientView {
     private void loadRestaurants(boolean page) throws SQLException {
         RestaurantController controller = new RestaurantController();
         Integer rows = controller.countRows();
-        
+
         jpContent.remove(panelScrollable);
         panel.removeAll();
         panelScrollable.getVerticalScrollBar().setUnitIncrement(50);
@@ -50,16 +51,15 @@ public class HomePageClient extends ClientView {
         } else {
             currentPage++;
         }
-        
+
         Integer rowsToShow = currentPage > 1 ? rows - (currentPage * 10) : rows - ((currentPage + 1) * 10);
         if (rowsToShow < 0) {
             jBtnNextArrow.setVisible(false);
         }
-        
+
         if (currentPage == 0) {
             jBtnBackArrow.setVisible(false);
         }
-        
 
         List<RestaurantModel> availableRestaurants = controller.controllerRetrieve(new RestaurantModel(), currentPage);
 
@@ -120,7 +120,7 @@ public class HomePageClient extends ClientView {
             }
 
         });
-        
+
         return btn;
     }
 

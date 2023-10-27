@@ -1,18 +1,18 @@
 package com.diegojacober.delivery.view;
 
 import com.diegojacober.delivery.controller.RestaurantController;
-import com.diegojacober.delivery.model.RestaurantModel;
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
-import com.diegojacober.delivery.view.ClientPages.HomePageClient;
 import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
-import java.time.LocalDateTime;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class SignUpRestaurant extends javax.swing.JFrame {
 
     private RestaurantController controller = new RestaurantController();
 
-    public SignUpRestaurant() {
+    public SignUpRestaurant() throws IOException {
+        this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
         initComponents();
     }
 
@@ -250,22 +250,32 @@ public class SignUpRestaurant extends javax.swing.JFrame {
 
         UserModel user = UserService.registerRestaurant(jtfRestaurantName.getText(), jtfEmail.getText(), jtfPasswordField.getText(), jtfRestaurantPositionX.getText(), jtfRestaurantPositionY.getText());
         if (user.getAccessToken() != null) {
-            RestaurantView restaurantView = new HomePageRestaurant(user);
-            restaurantView.setVisible(true);
-            restaurantView.pack();
-            restaurantView.setLocationRelativeTo(null);
-            this.dispose();
+            RestaurantView restaurantView;
+            try {
+                restaurantView = new HomePageRestaurant(user);
+                restaurantView.setVisible(true);
+                restaurantView.pack();
+                restaurantView.setLocationRelativeTo(null);
+                this.dispose();
+            } catch (IOException ex) {
+                System.err.println("ERRO: " + ex.getMessage());
+            }
+
         }
 
     }//GEN-LAST:event_jbtnRegisterActionPerformed
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
-        Login LoginFrame = new Login();
-
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null);
-        this.dispose();
+        Login loginPage;
+        try {
+            loginPage = new Login();
+            loginPage.setVisible(true);
+            loginPage.pack();
+            loginPage.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            System.err.println("ERRO: " + ex.getMessage());
+        }
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
     private void jtfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEmailActionPerformed

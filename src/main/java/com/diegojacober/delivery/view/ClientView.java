@@ -4,15 +4,20 @@ import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.ClientPages.HomePageClient;
 import com.diegojacober.delivery.view.ClientPages.OrdersPage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public abstract class ClientView extends javax.swing.JFrame {
 
     public abstract void initPageComponents();
+
     public abstract void nextButton();
+
     public abstract void backButton();
     public UserModel loggedUser;
-    
-    public ClientView(UserModel user) {
+
+    public ClientView(UserModel user) throws IOException {
+        this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
         initComponents();
         initPageComponents();
         this.loggedUser = user;
@@ -164,29 +169,39 @@ public abstract class ClientView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHomeActionPerformed
-        HomePageClient HomePageFrame = new HomePageClient(loggedUser);
-        
-        HomePageFrame.setVisible(true);
-        HomePageFrame.pack();
-        HomePageFrame.setLocationRelativeTo(null);
-        this.dispose();
+        HomePageClient HomePageFrame;
+        try {
+            HomePageFrame = new HomePageClient(loggedUser);
+            HomePageFrame.setVisible(true);
+            HomePageFrame.pack();
+            HomePageFrame.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            System.err.println("ERRO: " + ex.getMessage());
+        }
+
+
     }//GEN-LAST:event_jbtnHomeActionPerformed
 
     private void jbtnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOrdersActionPerformed
-        OrdersPage OrdersPageFrame = new OrdersPage(loggedUser);
-        
-        OrdersPageFrame.setVisible(true);
-        OrdersPageFrame.pack();
-        OrdersPageFrame.setLocationRelativeTo(null);
-        this.dispose();
+        OrdersPage OrdersPageFrame;
+        try {
+            OrdersPageFrame = new OrdersPage(loggedUser);
+            OrdersPageFrame.setVisible(true);
+            OrdersPageFrame.pack();
+            OrdersPageFrame.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            System.err.println("ERRO: " + ex.getMessage());
+        }
     }//GEN-LAST:event_jbtnOrdersActionPerformed
 
     private void jBtnBackArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBackArrowActionPerformed
-     
+
     }//GEN-LAST:event_jBtnBackArrowActionPerformed
 
     private void jBtnNextArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNextArrowActionPerformed
-        
+
     }//GEN-LAST:event_jBtnNextArrowActionPerformed
 
     private void jBtnNextArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnNextArrowMouseClicked
@@ -198,13 +213,19 @@ public abstract class ClientView extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnBackArrowMouseClicked
 
     private void jbtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogoutActionPerformed
-       if (UserService.logout(loggedUser)) {
-           Login loginPage = new Login();
-           loginPage.setVisible(true);
-           loginPage.pack();
-           loginPage.setLocationRelativeTo(null);
-           this.dispose();
-       }
+        if (UserService.logout(loggedUser)) {
+            Login loginPage;
+            try {
+                loginPage = new Login();
+                loginPage.setVisible(true);
+                loginPage.pack();
+                loginPage.setLocationRelativeTo(null);
+                this.dispose();
+            } catch (IOException ex) {
+                System.err.println("ERRO: " + ex.getMessage());
+            }
+
+        }
     }//GEN-LAST:event_jbtnLogoutActionPerformed
 
 
