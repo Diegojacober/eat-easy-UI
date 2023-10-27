@@ -2,7 +2,7 @@ package com.diegojacober.delivery.view;
 
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
-import com.diegojacober.delivery.view.ClientPages.HomePage;
+import com.diegojacober.delivery.view.ClientPages.HomePageClient;
 import com.diegojacober.delivery.view.ClientPages.OrdersPage;
 
 public abstract class ClientView extends javax.swing.JFrame {
@@ -166,7 +166,7 @@ public abstract class ClientView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHomeActionPerformed
-        HomePage HomePageFrame = new HomePage(loggedUser);
+        HomePageClient HomePageFrame = new HomePageClient(loggedUser);
         
         HomePageFrame.setVisible(true);
         HomePageFrame.pack();

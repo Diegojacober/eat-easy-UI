@@ -2,7 +2,8 @@ package com.diegojacober.delivery.view;
 
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
-import com.diegojacober.delivery.view.ClientPages.HomePage;
+import com.diegojacober.delivery.view.ClientPages.HomePageClient;
+import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -201,10 +202,14 @@ public class Login extends javax.swing.JFrame {
         // Faz todo o processo de validar o login
         UserModel user = UserService.login(jtfEmail.getText(), String.valueOf(jPasswordField.getPassword()));
         if (user.getEmail() != null) {
-            if (UserService.GetRoleLoggedUser(user).equals("ADMIn")) {
-
+            if (UserService.GetRoleLoggedUser(user).equals("ADMIN")) {
+                RestaurantView restaurantView = new HomePageRestaurant(user);
+                restaurantView.setVisible(true);
+                restaurantView.pack();
+                restaurantView.setLocationRelativeTo(null);
+                this.dispose();
             } else {
-                ClientView clientView = new HomePage(user);
+                ClientView clientView = new HomePageClient(user);
                 clientView.setVisible(true);
                 clientView.pack();
                 clientView.setLocationRelativeTo(null);

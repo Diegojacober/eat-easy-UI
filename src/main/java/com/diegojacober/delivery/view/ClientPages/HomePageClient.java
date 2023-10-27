@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Diego
  */
-public class HomePage extends ClientView {
+public class HomePageClient extends ClientView {
 
 //   private RestaurantController controller = new RestaurantController();
     private JPanel panel;
@@ -27,7 +27,7 @@ public class HomePage extends ClientView {
     private JScrollPane panelScrollable;
     private int currentPage = 0;
 
-    public HomePage(UserModel user) {
+    public HomePageClient(UserModel user) {
         super(user);
         jlPageTitle.setText("Available Restaurants");
     }
@@ -154,7 +154,7 @@ public class HomePage extends ClientView {
         try {
             loadRestaurants(false);
         } catch (SQLException ex) {
-            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomePageClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -163,7 +163,7 @@ public class HomePage extends ClientView {
         try {
             loadRestaurants(true);
         } catch (SQLException ex) {
-            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomePageClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -172,7 +172,7 @@ public class HomePage extends ClientView {
         try {
             loadRestaurants(false);
         } catch (SQLException ex) {
-            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomePageClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
