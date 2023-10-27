@@ -199,7 +199,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRegisterActionPerformed
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
-        // Faz todo o processo de validar o login
+
         UserModel user = UserService.login(jtfEmail.getText(), String.valueOf(jPasswordField.getPassword()));
         if (user.getEmail() != null) {
             if (UserService.GetRoleLoggedUser(user).equals("ADMIN")) {

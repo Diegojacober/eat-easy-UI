@@ -1,6 +1,7 @@
 package com.diegojacober.delivery.services;
 
 import com.diegojacober.delivery.model.UserModel;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -91,6 +92,63 @@ public class UserService {
 
         } catch (Exception e) {
             return null;
+        } finally {
+            try {
+                if (response != null) {
+                    response.close();
+                }
+                if (httpClient != null) {
+                    httpClient.close();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+            }
+        }
+    }
+    
+    
+    public static UserModel registerClient(String name, String email, String password) {
+         String path = URL + "/auth/register";
+
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpResponse response = null;
+
+        try {
+            HttpPost httpPost = new HttpPost(path);
+
+            JSONObject jsonRequest = new JSONObject();
+            jsonRequest.put("firstname", name);
+            jsonRequest.put("lastname", name);
+            jsonRequest.put("email", email);
+            jsonRequest.put("password", password);
+            jsonRequest.put("role", "USER");
+
+            StringEntity requestEntity = new StringEntity(jsonRequest.toString());
+            httpPost.setEntity(requestEntity);
+            httpPost.setHeader("Content-Type", "application/json");
+
+            response = httpClient.execute(httpPost);
+
+            HttpEntity responseEntity = response.getEntity();
+            
+            String responseString = EntityUtils.toString(responseEntity);
+
+            JSONObject jsonResponse = new JSONObject(responseString);
+            
+            if (response.getStatusLine().getStatusCode() == 400) {
+                System.out.println(jsonResponse.toString());
+                throw new Exception("campos inválidos");
+            }
+            
+
+            String accessToken = jsonResponse.get("access_token").toString();
+            String refreshToken = jsonResponse.get("refresh_token").toString();
+            
+            return new UserModel(name, accessToken, refreshToken);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return new UserModel();
         } finally {
             try {
                 if (response != null) {

@@ -117,6 +117,7 @@ public abstract class ClientView extends javax.swing.JFrame {
         jpContent.add(jSeparator1);
         jSeparator1.setBounds(80, 50, 990, 10);
 
+        jBtnNextArrow.setBackground(new java.awt.Color(255, 255, 255));
         jBtnNextArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/next-icon.png"))); // NOI18N
         jBtnNextArrow.setBorder(null);
         jBtnNextArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,6 +133,7 @@ public abstract class ClientView extends javax.swing.JFrame {
         jpContent.add(jBtnNextArrow);
         jBtnNextArrow.setBounds(580, 580, 60, 50);
 
+        jBtnBackArrow.setBackground(new java.awt.Color(255, 255, 255));
         jBtnBackArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/back-arrow.png"))); // NOI18N
         jBtnBackArrow.setBorder(null);
         jBtnBackArrow.addMouseListener(new java.awt.event.MouseAdapter() {

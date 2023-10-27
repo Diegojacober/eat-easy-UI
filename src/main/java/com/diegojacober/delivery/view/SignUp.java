@@ -1,7 +1,10 @@
 package com.diegojacober.delivery.view;
 
-public class SignUp extends javax.swing.JFrame {
+import com.diegojacober.delivery.model.UserModel;
+import com.diegojacober.delivery.services.UserService;
+import com.diegojacober.delivery.view.ClientPages.HomePageClient;
 
+public class SignUp extends javax.swing.JFrame {
 
     public SignUp() {
         initComponents();
@@ -231,7 +234,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
         Login LoginFrame = new Login();
-        
+
         LoginFrame.setVisible(true);
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null);
@@ -243,12 +246,19 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfFullNameActionPerformed
 
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
-        // TODO add your handling code here:
+        UserModel user = UserService.registerClient(jtfFullName.getText(), jtfNewEmail.getText(), String.valueOf(jNewPasswordField.getPassword()));
+        if (user.getAccessToken() != null) {
+            ClientView clientView = new HomePageClient(user);
+            clientView.setVisible(true);
+            clientView.pack();
+            clientView.setLocationRelativeTo(null);
+            this.dispose();
+        }
     }//GEN-LAST:event_jbtnRegisterActionPerformed
 
     private void jbtnRegisterRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterRestaurantActionPerformed
         SignUpRestaurant SignUpFrame = new SignUpRestaurant();
-        
+
         SignUpFrame.setVisible(true);
         SignUpFrame.pack();
         SignUpFrame.setLocationRelativeTo(null);
