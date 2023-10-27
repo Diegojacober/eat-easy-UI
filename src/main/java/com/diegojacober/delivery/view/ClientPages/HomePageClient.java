@@ -39,6 +39,7 @@ public class HomePageClient extends ClientView {
 
         jpContent.remove(panelScrollable);
         panel.removeAll();
+        
         panelScrollable.getVerticalScrollBar().setUnitIncrement(50);
         panelScrollable.setVisible(false);
         jBtnNextArrow.setVisible(true);
@@ -141,7 +142,7 @@ public class HomePageClient extends ClientView {
 
         panelScrollable = new JScrollPane(centeredPanel);
         panelScrollable.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        panelScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        panelScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         panelScrollable.setBackground(new java.awt.Color(255, 255, 255));
         panelScrollable.setBorder(null);
