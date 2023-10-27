@@ -2,13 +2,16 @@ package com.diegojacober.delivery.view;
 
 import com.diegojacober.delivery.controller.RestaurantController;
 import com.diegojacober.delivery.model.RestaurantModel;
+import com.diegojacober.delivery.model.UserModel;
+import com.diegojacober.delivery.services.UserService;
+import com.diegojacober.delivery.view.ClientPages.HomePageClient;
+import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
 import java.time.LocalDateTime;
 
-
 public class SignUpRestaurant extends javax.swing.JFrame {
-   
+
     private RestaurantController controller = new RestaurantController();
-    
+
     public SignUpRestaurant() {
         initComponents();
     }
@@ -245,15 +248,14 @@ public class SignUpRestaurant extends javax.swing.JFrame {
 
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
 
-        //Criar usuario atraves da api com a role de restaurant
-        //        jtfRestaurantName.getText();
-        //        jtfEmail.getText();
-        //        jtfPasswordField.getText();
-        
-        //criar restaurante
-        RestaurantModel newRestaurant = new RestaurantModel(null, jtfRestaurantName.getText(), LocalDateTime.now(), jtfRestaurantPositionX.getText(), jtfRestaurantPositionY.getText());
-        controller.controllerSave(newRestaurant);
-        //fazer login na api
+        UserModel user = UserService.registerRestaurant(jtfRestaurantName.getText(), jtfEmail.getText(), jtfPasswordField.getText(), jtfRestaurantPositionX.getText(), jtfRestaurantPositionY.getText());
+        if (user.getAccessToken() != null) {
+            RestaurantView restaurantView = new HomePageRestaurant(user);
+            restaurantView.setVisible(true);
+            restaurantView.pack();
+            restaurantView.setLocationRelativeTo(null);
+            this.dispose();
+        }
 
     }//GEN-LAST:event_jbtnRegisterActionPerformed
 
