@@ -1,18 +1,21 @@
 package com.diegojacober.delivery.view;
 
+import com.diegojacober.delivery.model.UserModel;
+import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.ClientPages.HomePage;
 import com.diegojacober.delivery.view.ClientPages.OrdersPage;
-import javax.swing.JScrollPane;
 
 public abstract class ClientView extends javax.swing.JFrame {
 
     public abstract void initPageComponents();
     public abstract void nextButton();
     public abstract void backButton();
+    public UserModel loggedUser;
     
-    public ClientView() {
+    public ClientView(UserModel user) {
         initComponents();
         initPageComponents();
+        this.loggedUser = user;
     }
 
     @SuppressWarnings("unchecked")
@@ -55,6 +58,11 @@ public abstract class ClientView extends javax.swing.JFrame {
         jbtnLogout.setBackground(new java.awt.Color(0, 102, 102));
         jbtnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/loogut.png"))); // NOI18N
         jbtnLogout.setBorder(null);
+        jbtnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnLogoutActionPerformed(evt);
+            }
+        });
 
         jbtnOrders.setBackground(new java.awt.Color(0, 102, 102));
         jbtnOrders.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/orders.png"))); // NOI18N
@@ -109,7 +117,6 @@ public abstract class ClientView extends javax.swing.JFrame {
         jpContent.add(jSeparator1);
         jSeparator1.setBounds(80, 50, 990, 10);
 
-        jBtnNextArrow.setBackground(new java.awt.Color(255, 255, 255));
         jBtnNextArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/next-icon.png"))); // NOI18N
         jBtnNextArrow.setBorder(null);
         jBtnNextArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,7 +132,6 @@ public abstract class ClientView extends javax.swing.JFrame {
         jpContent.add(jBtnNextArrow);
         jBtnNextArrow.setBounds(580, 580, 60, 50);
 
-        jBtnBackArrow.setBackground(new java.awt.Color(255, 255, 255));
         jBtnBackArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/back-arrow.png"))); // NOI18N
         jBtnBackArrow.setBorder(null);
         jBtnBackArrow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,7 +166,7 @@ public abstract class ClientView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHomeActionPerformed
-        HomePage HomePageFrame = new HomePage();
+        HomePage HomePageFrame = new HomePage(loggedUser);
         
         HomePageFrame.setVisible(true);
         HomePageFrame.pack();
@@ -169,7 +175,7 @@ public abstract class ClientView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnHomeActionPerformed
 
     private void jbtnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOrdersActionPerformed
-        OrdersPage OrdersPageFrame = new OrdersPage();
+        OrdersPage OrdersPageFrame = new OrdersPage(loggedUser);
         
         OrdersPageFrame.setVisible(true);
         OrdersPageFrame.pack();
@@ -192,6 +198,16 @@ public abstract class ClientView extends javax.swing.JFrame {
     private void jBtnBackArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnBackArrowMouseClicked
         backButton();
     }//GEN-LAST:event_jBtnBackArrowMouseClicked
+
+    private void jbtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogoutActionPerformed
+       if (UserService.logout(loggedUser)) {
+           Login loginPage = new Login();
+           loginPage.setVisible(true);
+           loginPage.pack();
+           loginPage.setLocationRelativeTo(null);
+           this.dispose();
+       }
+    }//GEN-LAST:event_jbtnLogoutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

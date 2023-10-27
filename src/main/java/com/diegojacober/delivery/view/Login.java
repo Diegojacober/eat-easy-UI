@@ -204,7 +204,7 @@ public class Login extends javax.swing.JFrame {
             if (UserService.GetRoleLoggedUser(user).equals("ADMIn")) {
 
             } else {
-                ClientView clientView = new HomePage();
+                ClientView clientView = new HomePage(user);
                 clientView.setVisible(true);
                 clientView.pack();
                 clientView.setLocationRelativeTo(null);
@@ -214,10 +214,6 @@ public class Login extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possível fazer login");
         }
-
-        // Logo apos verifica qual o tipo do perfil
-        // abre interface correta
-
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
     /**

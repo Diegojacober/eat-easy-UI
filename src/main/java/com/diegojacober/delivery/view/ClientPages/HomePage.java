@@ -2,6 +2,7 @@ package com.diegojacober.delivery.view.ClientPages;
 
 import com.diegojacober.delivery.controller.RestaurantController;
 import com.diegojacober.delivery.model.RestaurantModel;
+import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.view.ClientView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +27,8 @@ public class HomePage extends ClientView {
     private JScrollPane panelScrollable;
     private int currentPage = 0;
 
-    public HomePage() {
+    public HomePage(UserModel user) {
+        super(user);
         jlPageTitle.setText("Available Restaurants");
     }
 

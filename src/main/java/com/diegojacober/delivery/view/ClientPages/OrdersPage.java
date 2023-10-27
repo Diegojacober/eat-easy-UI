@@ -4,6 +4,7 @@
  */
 package com.diegojacober.delivery.view.ClientPages;
 
+import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.view.ClientView;
 
 /**
@@ -12,7 +13,8 @@ import com.diegojacober.delivery.view.ClientView;
  */
 public class OrdersPage extends ClientView{
     
-    public OrdersPage() {
+    public OrdersPage(UserModel user) {
+        super(user);
         setTitle("Your orders in Diego delivery");
         jlPageTitle.setText("My orders");
     }

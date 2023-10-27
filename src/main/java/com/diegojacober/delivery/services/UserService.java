@@ -104,4 +104,37 @@ public class UserService {
             }
         }
     }
+    
+    
+    public static boolean logout(UserModel user) {
+        String path = URL + "/auth/logout";
+
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpResponse response = null;
+
+         try {
+             HttpGet httpGet = new HttpGet(path);
+
+            httpGet.setHeader("Content-Type", "application/json");
+            httpGet.setHeader("Authorization", "Bearer " + user.getAccessToken());
+
+            response = httpClient.execute(httpGet);
+             
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        } finally {
+            try {
+                if (response != null) {
+                    response.close();
+                }
+                if (httpClient != null) {
+                    httpClient.close();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+            }
+        }
+    }
 }
