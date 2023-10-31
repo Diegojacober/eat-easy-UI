@@ -6,8 +6,8 @@ import javax.swing.JOptionPane;
 
 
 public class DBConnection {
-    private static final String driverClass = "com.mysql.cj.jdbc.Driver";
-    private static final String url = "jdbc:mysql://localhost:3306/delivery";
+    private static final String driverClass = "org.postgresql.Driver";
+    private static final String url = "jdbc:postgresql://localhost:5432/eateasy";
     private static final String user = "dev";
     private static final String password = "123456";
     
