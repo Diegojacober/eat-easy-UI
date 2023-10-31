@@ -50,7 +50,7 @@ public class RestaurantDAO {
             while (resultSet.next()) {
                 restaurants.add(
                         new RestaurantModel(
-                                resultSet.getInt("id_restaurant"),
+                                resultSet.getInt("id"),
                                 resultSet.getString("name"),
                                 resultSet.getTimestamp("created_at").toLocalDateTime(),
                                 resultSet.getString("location_x"),
