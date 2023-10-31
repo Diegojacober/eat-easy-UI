@@ -1,11 +1,73 @@
 package com.diegojacober.delivery.view.ClientPages;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 public class DoOrder extends javax.swing.JFrame {
+
+    private JPanel panel;
+    private JPanel centeredPanel;
+    private JScrollPane panelScrollable;
 
     public DoOrder(String name, Integer id) {
         initComponents();
+        loadComponents();
         setTitle(name);
         jlRestaurantName.setText(name);
+
+        panel.removeAll();
+        panelScrollable.getVerticalScrollBar().setUnitIncrement(50);
+        panelScrollable.setVisible(false);
+        this.add(panelScrollable, BorderLayout.CENTER);
+        loadItems();
+        panelScrollable.setVisible(true);
+    }
+
+    private void loadItems() {
+        for (int i = 0; i < 15; i++) {
+            JButton btn = new JButton("oi " + i);
+            btn.setPreferredSize(new Dimension(150, 100));
+            btn.setMinimumSize(new Dimension(150, 100));
+            btn.setMaximumSize(new Dimension(150, 100));
+
+            Color bgColor = new Color(191, 191, 191);
+            btn.setBackground(bgColor);
+            btn.setFont(new Font("Segoe UI", 0, 24));
+            btn.setForeground(new Color(51, 51, 51));
+            btn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+            
+            
+            JPanel panelS = new JPanel();
+            panelS.setBackground(new java.awt.Color(0, 102, 102));
+            panelS.add(btn);
+            panel.add(panelS);
+            panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        }
+    }
+
+    private void loadComponents() {
+
+        panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
+        centeredPanel = new JPanel(new GridBagLayout());
+        centeredPanel.add(panel);
+
+        panelScrollable = new JScrollPane(centeredPanel);
+        panelScrollable.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        panelScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        panelScrollable.setBackground(new java.awt.Color(255, 255, 255));
+        panelScrollable.setBorder(null);
+        panelScrollable.setBounds(10, 50, 600, 320);
     }
 
     @SuppressWarnings("unchecked")
@@ -15,7 +77,6 @@ public class DoOrder extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jlRestaurantName = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrolItems = new javax.swing.JScrollPane();
         jButtonReset = new javax.swing.JButton();
         jBtnAddItems = new javax.swing.JButton();
 
@@ -36,10 +97,6 @@ public class DoOrder extends javax.swing.JFrame {
         jlRestaurantName.setText("Restaurant name");
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-
-        jScrolItems.setBackground(new java.awt.Color(255, 255, 255));
-        jScrolItems.setBorder(null);
-        jScrolItems.setForeground(new java.awt.Color(255, 255, 255));
 
         jButtonReset.setBackground(new java.awt.Color(153, 0, 0));
         jButtonReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -67,7 +124,6 @@ public class DoOrder extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrolItems)
                             .addComponent(jlRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                             .addComponent(jSeparator1))
                         .addContainerGap())
@@ -83,9 +139,7 @@ public class DoOrder extends javax.swing.JFrame {
                 .addComponent(jlRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrolItems, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(345, 345, 345)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnAddItems, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonReset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -114,7 +168,6 @@ public class DoOrder extends javax.swing.JFrame {
     private javax.swing.JButton jBtnAddItems;
     private javax.swing.JButton jButtonReset;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrolItems;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel jlRestaurantName;
     // End of variables declaration//GEN-END:variables
