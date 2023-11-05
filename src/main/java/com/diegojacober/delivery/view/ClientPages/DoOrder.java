@@ -5,17 +5,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 public class DoOrder extends javax.swing.JFrame {
 
     private JPanel panel;
     private JPanel centeredPanel;
     private JScrollPane panelScrollable;
+    private Map<String, Integer> order = new HashMap<>();
+    JSpinner[] spinners = new JSpinner[10];
+    JLabel[] labels = new JLabel[10];
 
     public DoOrder(String name, Integer id) {
         initComponents();
@@ -32,22 +41,40 @@ public class DoOrder extends javax.swing.JFrame {
     }
 
     private void loadItems() {
-        for (int i = 0; i < 15; i++) {
-            JButton btn = new JButton("oi " + i);
-            btn.setPreferredSize(new Dimension(150, 100));
-            btn.setMinimumSize(new Dimension(150, 100));
-            btn.setMaximumSize(new Dimension(150, 100));
+        for (int i = 0; i < 10; i++) {
+            JLabel label = new JLabel(i + " - Produto");
+            label.setPreferredSize(new Dimension(400, 100));
+            label.setMinimumSize(new Dimension(400, 100));
+            label.setMaximumSize(new Dimension(400, 100));
 
-            Color bgColor = new Color(191, 191, 191);
-            btn.setBackground(bgColor);
-            btn.setFont(new Font("Segoe UI", 0, 24));
-            btn.setForeground(new Color(51, 51, 51));
-            btn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-            
-            
+            label.setFont(new Font("Segoe UI", 0, 24));
+            label.setForeground(new Color(255, 255, 255));
+            label.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+            SpinnerModel modelSpinner = new SpinnerNumberModel(0, 0, 20, 1);
+            JSpinner spinner = new JSpinner(modelSpinner);
+
+            spinner.setBackground(Color.BLACK);
+            spinner.setForeground(Color.WHITE);
+            Font font = new Font("Arial", Font.PLAIN, 22);
+            spinner.setFont(font);
+
+            JComponent editor = spinner.getEditor();
+            if (editor instanceof JSpinner.DefaultEditor) {
+                ((JSpinner.DefaultEditor) editor).getTextField().setEditable(false);
+            }
+            spinner.setPreferredSize(new Dimension(50, 30));
+
+            spinners[i] = spinner;
+            labels[i] = label;
+
             JPanel panelS = new JPanel();
             panelS.setBackground(new java.awt.Color(0, 102, 102));
-            panelS.add(btn);
+            panelS.setPreferredSize(new Dimension(520, 110));
+            panelS.setMinimumSize(new Dimension(520, 110));
+            panelS.setMaximumSize(new Dimension(520, 110));
+            panelS.add(label);
+            panelS.add(spinner);
             panel.add(panelS);
             panel.add(Box.createRigidArea(new Dimension(0, 20)));
         }
@@ -114,6 +141,11 @@ public class DoOrder extends javax.swing.JFrame {
         jBtnAddItems.setForeground(new java.awt.Color(255, 255, 255));
         jBtnAddItems.setText("Add items");
         jBtnAddItems.setBorder(null);
+        jBtnAddItems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAddItemsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,8 +193,23 @@ public class DoOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
-        // TODO add your handling code here:
+        for (JSpinner spinner: spinners) {
+            spinner.setValue(0);
+        }
     }//GEN-LAST:event_jButtonResetActionPerformed
+
+    private void jBtnAddItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddItemsActionPerformed
+       for (int i = 0; i < 10; i++) {
+            Integer qtd = (Integer) spinners[i].getValue();
+            
+            if (qtd > 0) {
+                String idItem = labels[i].getText().split("-")[0];
+                order.put(idItem, qtd);
+            }
+        }
+        
+        order.forEach((key, value) -> System.out.println("Chave: " + key + ", Valor: " + value));
+    }//GEN-LAST:event_jBtnAddItemsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAddItems;
