@@ -2,26 +2,15 @@ package com.diegojacober.delivery.view.ClientPages;
 
 import com.diegojacober.delivery.controller.ProductController;
 import com.diegojacober.delivery.model.ProductModel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagLayout;
+import com.diegojacober.delivery.model.UserModel;
+import com.diegojacober.delivery.services.PedidoService;
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.*;
+import javax.swing.event.*;
 
 public class DoOrder extends javax.swing.JFrame {
 
@@ -33,8 +22,11 @@ public class DoOrder extends javax.swing.JFrame {
     private List<ProductModel> products;
     JSpinner[] spinners;
     JLabel[] labels;
+    
+    public UserModel loggedUser;
 
-    public DoOrder(String name, Integer id) throws SQLException {
+    public DoOrder(String name, Integer id, UserModel user) throws SQLException {
+        loggedUser = user;
         initComponents();
         loadComponents();
         setTitle(name);
@@ -81,7 +73,7 @@ public class DoOrder extends javax.swing.JFrame {
             spinner.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent e) {
-                    jBtnAddItems.setText( sumItems() + " - Add items");
+                    jBtnAddItems.setText(sumItems() + " - Add items");
                 }
             });
 
@@ -228,24 +220,27 @@ public class DoOrder extends javax.swing.JFrame {
             }
         }
 
-        order.forEach((key, value) -> System.out.println("Chave: " + key + ", Valor: " + value));
+        if (PedidoService.makeOrder(order, sumItems(), loggedUser)) {
+            JOptionPane.showMessageDialog(null, "Seu pedido foi efetuado com sucesso, obrigado pela preferência!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Ops! falha, tente novamente mais tarde!");
+        }
     }//GEN-LAST:event_jBtnAddItemsActionPerformed
 
     private Double sumItems() {
-         Double sum = 0.0;
-         for (int i = 0; i < products.size(); i++) {
+        Double sum = 0.0;
+        for (int i = 0; i < products.size(); i++) {
             Integer qtd = (Integer) spinners[i].getValue();
-
             if (qtd > 0) {
                 Double valueItem = Double.valueOf(labels[i].getText().split("R\\$")[1].trim());
                 Double subtTotal = qtd * valueItem;
                 sum += subtTotal;
             }
         }
-         
-         return sum;
+
+        return sum;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAddItems;
     private javax.swing.JButton jButtonReset;

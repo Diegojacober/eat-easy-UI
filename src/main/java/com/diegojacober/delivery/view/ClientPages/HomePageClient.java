@@ -130,7 +130,7 @@ public class HomePageClient extends ClientView {
     }
 
     private void loadRestaurant(String name, Integer id) throws SQLException {
-        DoOrder DoOrderFrame = new DoOrder(name, id);
+        DoOrder DoOrderFrame = new DoOrder(name, id, loggedUser);
 
         DoOrderFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         DoOrderFrame.setVisible(true);
