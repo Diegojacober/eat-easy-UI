@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class DoOrder extends javax.swing.JFrame {
 
@@ -44,7 +46,7 @@ public class DoOrder extends javax.swing.JFrame {
         this.add(panelScrollable, BorderLayout.CENTER);
 
         products = controller.controllerRetrieve(id);
-        
+
         spinners = new JSpinner[products.size()];
         labels = new JLabel[products.size()];
         loadItems();
@@ -75,6 +77,13 @@ public class DoOrder extends javax.swing.JFrame {
                 ((JSpinner.DefaultEditor) editor).getTextField().setEditable(false);
             }
             spinner.setPreferredSize(new Dimension(50, 30));
+
+            spinner.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    jBtnAddItems.setText( sumItems() + " - Add items");
+                }
+            });
 
             spinners[i] = spinner;
             labels[i] = label;
@@ -222,6 +231,21 @@ public class DoOrder extends javax.swing.JFrame {
         order.forEach((key, value) -> System.out.println("Chave: " + key + ", Valor: " + value));
     }//GEN-LAST:event_jBtnAddItemsActionPerformed
 
+    private Double sumItems() {
+         Double sum = 0.0;
+         for (int i = 0; i < products.size(); i++) {
+            Integer qtd = (Integer) spinners[i].getValue();
+
+            if (qtd > 0) {
+                Double valueItem = Double.valueOf(labels[i].getText().split("R\\$")[1].trim());
+                Double subtTotal = qtd * valueItem;
+                sum += subtTotal;
+            }
+        }
+         
+         return sum;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAddItems;
     private javax.swing.JButton jButtonReset;
