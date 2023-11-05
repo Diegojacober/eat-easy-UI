@@ -1,11 +1,15 @@
 package com.diegojacober.delivery.view.ClientPages;
 
+import com.diegojacober.delivery.controller.ProductController;
+import com.diegojacober.delivery.model.ProductModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -23,10 +27,12 @@ public class DoOrder extends javax.swing.JFrame {
     private JPanel centeredPanel;
     private JScrollPane panelScrollable;
     private Map<String, Integer> order = new HashMap<>();
-    JSpinner[] spinners = new JSpinner[10];
-    JLabel[] labels = new JLabel[10];
+    private ProductController controller = new ProductController();
+    private List<ProductModel> products;
+    JSpinner[] spinners;
+    JLabel[] labels;
 
-    public DoOrder(String name, Integer id) {
+    public DoOrder(String name, Integer id) throws SQLException {
         initComponents();
         loadComponents();
         setTitle(name);
@@ -36,13 +42,18 @@ public class DoOrder extends javax.swing.JFrame {
         panelScrollable.getVerticalScrollBar().setUnitIncrement(50);
         panelScrollable.setVisible(false);
         this.add(panelScrollable, BorderLayout.CENTER);
+
+        products = controller.controllerRetrieve(id);
+        
+        spinners = new JSpinner[products.size()];
+        labels = new JLabel[products.size()];
         loadItems();
         panelScrollable.setVisible(true);
     }
 
     private void loadItems() {
-        for (int i = 0; i < 10; i++) {
-            JLabel label = new JLabel(i + " - Produto");
+        for (int i = 0; i < products.size(); i++) {
+            JLabel label = new JLabel(products.get(i).getId() + " - " + products.get(i).getName() + ": R$ " + products.get(i).getValue());
             label.setPreferredSize(new Dimension(400, 100));
             label.setMinimumSize(new Dimension(400, 100));
             label.setMaximumSize(new Dimension(400, 100));
@@ -56,7 +67,7 @@ public class DoOrder extends javax.swing.JFrame {
 
             spinner.setBackground(Color.BLACK);
             spinner.setForeground(Color.WHITE);
-            Font font = new Font("Arial", Font.PLAIN, 22);
+            Font font = new Font("Arial", Font.PLAIN, 14);
             spinner.setFont(font);
 
             JComponent editor = spinner.getEditor();
@@ -193,21 +204,21 @@ public class DoOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
-        for (JSpinner spinner: spinners) {
+        for (JSpinner spinner : spinners) {
             spinner.setValue(0);
         }
     }//GEN-LAST:event_jButtonResetActionPerformed
 
     private void jBtnAddItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddItemsActionPerformed
-       for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < products.size(); i++) {
             Integer qtd = (Integer) spinners[i].getValue();
-            
+
             if (qtd > 0) {
                 String idItem = labels[i].getText().split("-")[0];
                 order.put(idItem, qtd);
             }
         }
-        
+
         order.forEach((key, value) -> System.out.println("Chave: " + key + ", Valor: " + value));
     }//GEN-LAST:event_jBtnAddItemsActionPerformed
 

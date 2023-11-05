@@ -94,8 +94,12 @@ public class HomePageClient extends ClientView {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Ação a ser executada quando o botão for clicado
-                loadRestaurant(txt, id);
+                try {
+                    // Ação a ser executada quando o botão for clicado
+                    loadRestaurant(txt, id);
+                } catch (SQLException ex) {
+                    Logger.getLogger(HomePageClient.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -125,7 +129,7 @@ public class HomePageClient extends ClientView {
         return btn;
     }
 
-    private void loadRestaurant(String name, Integer id) {
+    private void loadRestaurant(String name, Integer id) throws SQLException {
         DoOrder DoOrderFrame = new DoOrder(name, id);
 
         DoOrderFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

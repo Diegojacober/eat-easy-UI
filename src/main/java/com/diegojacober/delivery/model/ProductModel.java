@@ -4,16 +4,16 @@ public class ProductModel {
     private Integer id;
     private String name;
     private Double value;
-    private RestaurantModel restaurant;
+    private Integer restaurant_id;
 
     public ProductModel() {
     }
 
-    public ProductModel(Integer id, String name, Double value, RestaurantModel restaurant) {
+    public ProductModel(Integer id, String name, Double value, Integer restaurant_id) {
         this.id = id;
         this.name = name;
         this.value = value;
-        this.restaurant = restaurant;
+        this.restaurant_id = restaurant_id;
     }
 
     public Integer getId() {
@@ -40,17 +40,17 @@ public class ProductModel {
         this.value = value;
     }
 
-    public RestaurantModel getRestaurant() {
-        return restaurant;
+    public Integer getRestaurant() {
+        return restaurant_id;
     }
 
-    public void setRestaurant(RestaurantModel restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurant(Integer restaurant_id) {
+        this.restaurant_id = restaurant_id;
     }
 
     @Override
     public String toString() {
-        return "ProductModel{" + "id=" + id + ", name=" + name + ", value=" + value + ", restaurant=" + restaurant + '}';
+        return "ProductModel{" + "id=" + id + ", name=" + name + ", value=" + value + ", restaurant=" + restaurant_id + '}';
     }
     
     
