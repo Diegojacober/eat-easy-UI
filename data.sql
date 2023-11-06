@@ -19,7 +19,7 @@ ALTER TABLE public.restaurants ALTER COLUMN id SET DEFAULT NEXTVAL('id_restauran
 
 INSERT INTO public.restaurants (name,created_at, location_x, location_y) VALUES
 	('Restaurante de teste', '2023-10-21 22:08:51', '123', '123'),
-	('Restaurante do joao', '2023-10-22 10:32:42', '123', '123')
+	('Restaurante do joao', '2023-10-22 10:32:42', '123', '123');
 
 
 CREATE TABLE public.products

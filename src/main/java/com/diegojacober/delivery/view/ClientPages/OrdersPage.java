@@ -1,7 +1,6 @@
 package com.diegojacober.delivery.view.ClientPages;
 
 import com.diegojacober.delivery.model.OrderModel;
-import com.diegojacober.delivery.model.RestaurantModel;
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.PedidoService;
 import com.diegojacober.delivery.view.ClientView;
@@ -19,7 +18,7 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -45,7 +44,7 @@ public class OrdersPage extends ClientView {
 
             String txt = "R$ " + order.getTotal() + " - " + order.getRestaurantName() + " (" + order.getDate() + ")";
 
-            JButton btn = createButton(txt);
+            JButton btn = createButton(txt, order);
 
             panel.add(btn);
             panel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -55,7 +54,7 @@ public class OrdersPage extends ClientView {
         });
     }
 
-    private JButton createButton(String txt) {
+    private JButton createButton(String txt, OrderModel order) {
         JButton btn = new JButton(txt);
         btn.setPreferredSize(new Dimension(950, 100));
 
@@ -72,7 +71,11 @@ public class OrdersPage extends ClientView {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                OrderPage orderPage = new OrderPage(order);
 
+                orderPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                orderPage.setVisible(true);
+                orderPage.setLocationRelativeTo(null);
             }
         });
 
