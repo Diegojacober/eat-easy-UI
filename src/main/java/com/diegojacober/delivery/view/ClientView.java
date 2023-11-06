@@ -1,13 +1,24 @@
 package com.diegojacober.delivery.view;
 
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.LayoutStyle;
+import javax.swing.WindowConstants;
+
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.ClientPages.HomePageClient;
 import com.diegojacober.delivery.view.ClientPages.OrdersPage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
-public abstract class ClientView extends javax.swing.JFrame {
+public abstract class ClientView extends JFrame {
 
     public abstract void initPageComponents();
 
@@ -24,20 +35,19 @@ public abstract class ClientView extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpContent = new javax.swing.JPanel();
-        jpMenu = new javax.swing.JPanel();
-        jbtnHome = new javax.swing.JButton();
-        jbtnLogout = new javax.swing.JButton();
-        jbtnOrders = new javax.swing.JButton();
-        jlPageTitle = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jBtnNextArrow = new javax.swing.JButton();
-        jBtnBackArrow = new javax.swing.JButton();
+        jpContent = new JPanel();
+        jpMenu = new JPanel();
+        jbtnHome = new JButton();
+        jbtnLogout = new JButton();
+        jbtnOrders = new JButton();
+        jlPageTitle = new JLabel();
+        jSeparator1 = new JSeparator();
+        jBtnNextArrow = new JButton();
+        jBtnBackArrow = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Do your order");
         setBackground(new java.awt.Color(0, 102, 102));
         setResizable(false);
@@ -50,7 +60,7 @@ public abstract class ClientView extends javax.swing.JFrame {
 
         jbtnHome.setBackground(new java.awt.Color(0, 102, 102));
         jbtnHome.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/home.png"))); // NOI18N
+        jbtnHome.setIcon(new ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/home.png"))); // NOI18N
         jbtnHome.setBorder(null);
         jbtnHome.setFocusPainted(false);
         jbtnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +70,7 @@ public abstract class ClientView extends javax.swing.JFrame {
         });
 
         jbtnLogout.setBackground(new java.awt.Color(0, 102, 102));
-        jbtnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/loogut.png"))); // NOI18N
+        jbtnLogout.setIcon(new ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/loogut.png"))); // NOI18N
         jbtnLogout.setBorder(null);
         jbtnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +79,7 @@ public abstract class ClientView extends javax.swing.JFrame {
         });
 
         jbtnOrders.setBackground(new java.awt.Color(0, 102, 102));
-        jbtnOrders.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/orders.png"))); // NOI18N
+        jbtnOrders.setIcon(new ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/orders.png"))); // NOI18N
         jbtnOrders.setBorder(null);
         jbtnOrders.setFocusPainted(false);
         jbtnOrders.addActionListener(new java.awt.event.ActionListener() {
@@ -78,27 +88,27 @@ public abstract class ClientView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
+        GroupLayout jpMenuLayout = new GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
         jpMenuLayout.setHorizontalGroup(
-            jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jpMenuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpMenuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnHome, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnLogout, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnOrders, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
         jpMenuLayout.setVerticalGroup(
-            jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jpMenuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jbtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtnHome, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jbtnOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 443, Short.MAX_VALUE)
-                .addComponent(jbtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtnOrders, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 443, Short.MAX_VALUE)
+                .addComponent(jbtnLogout, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
 
@@ -114,50 +124,40 @@ public abstract class ClientView extends javax.swing.JFrame {
         jSeparator1.setBounds(80, 50, 990, 10);
 
         jBtnNextArrow.setBackground(new java.awt.Color(255, 255, 255));
-        jBtnNextArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/next-icon.png"))); // NOI18N
+        jBtnNextArrow.setIcon(new ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/next-icon.png"))); // NOI18N
         jBtnNextArrow.setBorder(null);
         jBtnNextArrow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnNextArrowMouseClicked(evt);
             }
         });
-        jBtnNextArrow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnNextArrowActionPerformed(evt);
-            }
-        });
         jpContent.add(jBtnNextArrow);
         jBtnNextArrow.setBounds(580, 580, 60, 50);
 
         jBtnBackArrow.setBackground(new java.awt.Color(255, 255, 255));
-        jBtnBackArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/back-arrow.png"))); // NOI18N
+        jBtnBackArrow.setIcon(new ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/back-arrow.png"))); // NOI18N
         jBtnBackArrow.setBorder(null);
         jBtnBackArrow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnBackArrowMouseClicked(evt);
             }
         });
-        jBtnBackArrow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnBackArrowActionPerformed(evt);
-            }
-        });
         jpContent.add(jBtnBackArrow);
         jBtnBackArrow.setBounds(520, 580, 60, 50);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpContent, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jpContent, GroupLayout.PREFERRED_SIZE, 1080, GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpContent, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jpContent, GroupLayout.PREFERRED_SIZE, 650, GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void jbtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHomeActionPerformed
         HomePageClient HomePageFrame;
@@ -172,7 +172,7 @@ public abstract class ClientView extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jbtnHomeActionPerformed
+    }
 
     private void jbtnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOrdersActionPerformed
         OrdersPage OrdersPageFrame;
@@ -185,23 +185,15 @@ public abstract class ClientView extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.err.println("ERRO: " + ex.getMessage());
         }
-    }//GEN-LAST:event_jbtnOrdersActionPerformed
-
-    private void jBtnBackArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBackArrowActionPerformed
-
-    }//GEN-LAST:event_jBtnBackArrowActionPerformed
-
-    private void jBtnNextArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNextArrowActionPerformed
-
-    }//GEN-LAST:event_jBtnNextArrowActionPerformed
+    }
 
     private void jBtnNextArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnNextArrowMouseClicked
         nextButton();
-    }//GEN-LAST:event_jBtnNextArrowMouseClicked
+    }
 
     private void jBtnBackArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnBackArrowMouseClicked
         backButton();
-    }//GEN-LAST:event_jBtnBackArrowMouseClicked
+    }
 
     private void jbtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogoutActionPerformed
         if (UserService.logout(loggedUser)) {
@@ -217,18 +209,15 @@ public abstract class ClientView extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_jbtnLogoutActionPerformed
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton jBtnBackArrow;
-    protected javax.swing.JButton jBtnNextArrow;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton jbtnHome;
-    private javax.swing.JButton jbtnLogout;
-    private javax.swing.JButton jbtnOrders;
-    protected javax.swing.JLabel jlPageTitle;
-    protected javax.swing.JPanel jpContent;
-    private javax.swing.JPanel jpMenu;
-    // End of variables declaration//GEN-END:variables
+    protected JButton jBtnBackArrow;
+    protected JButton jBtnNextArrow;
+    private JSeparator jSeparator1;
+    private JButton jbtnHome;
+    private JButton jbtnLogout;
+    private JButton jbtnOrders;
+    protected JLabel jlPageTitle;
+    protected JPanel jpContent;
+    private JPanel jpMenu;
 }

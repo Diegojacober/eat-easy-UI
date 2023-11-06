@@ -1,13 +1,26 @@
 package com.diegojacober.delivery.view;
 
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+import javax.swing.WindowConstants;
+
 import com.diegojacober.delivery.controller.RestaurantController;
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
-public class SignUpRestaurant extends javax.swing.JFrame {
+public class SignUpRestaurant extends JFrame {
 
     private RestaurantController controller = new RestaurantController();
 
@@ -17,53 +30,52 @@ public class SignUpRestaurant extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jplLeft = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jplRight = new javax.swing.JPanel();
-        lbSignUp = new javax.swing.JLabel();
-        jlEmail = new javax.swing.JLabel();
-        jtfRestaurantName = new javax.swing.JTextField();
-        jlPassword = new javax.swing.JLabel();
-        jbtnRegister = new javax.swing.JButton();
-        jlLoginMessage = new javax.swing.JLabel();
-        jbtnLogin = new javax.swing.JButton();
-        jtfEmail = new javax.swing.JTextField();
-        jlEmail1 = new javax.swing.JLabel();
-        jlEmail2 = new javax.swing.JLabel();
-        jtfPasswordField = new javax.swing.JTextField();
-        jtfRestaurantPositionX = new javax.swing.JTextField();
-        jlEmail3 = new javax.swing.JLabel();
-        jtfRestaurantPositionY = new javax.swing.JTextField();
+        jScrollPane1 = new JScrollPane();
+        jTextArea1 = new JTextArea();
+        jplLeft = new JPanel();
+        jLabel3 = new JLabel();
+        jplRight = new JPanel();
+        lbSignUp = new JLabel();
+        jlEmail = new JLabel();
+        jtfRestaurantName = new JTextField();
+        jlPassword = new JLabel();
+        jbtnRegister = new JButton();
+        jlLoginMessage = new JLabel();
+        jbtnLogin = new JButton();
+        jtfEmail = new JTextField();
+        jlEmail1 = new JLabel();
+        jlEmail2 = new JLabel();
+        jtfPasswordField = new JTextField();
+        jtfRestaurantPositionX = new JTextField();
+        jlEmail3 = new JLabel();
+        jtfRestaurantPositionY = new JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jplLeft.setBackground(new java.awt.Color(0, 102, 102));
         jplLeft.setForeground(new java.awt.Color(51, 51, 51));
         jplLeft.setMinimumSize(new java.awt.Dimension(400, 500));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/delivery.png"))); // NOI18N
+        jLabel3.setIcon(new ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/delivery.png"))); // NOI18N
 
-        javax.swing.GroupLayout jplLeftLayout = new javax.swing.GroupLayout(jplLeft);
+        GroupLayout jplLeftLayout = new GroupLayout(jplLeft);
         jplLeft.setLayout(jplLeftLayout);
         jplLeftLayout.setHorizontalGroup(
-            jplLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jplLeftLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jplLeftLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel3)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jplLeftLayout.setVerticalGroup(
-            jplLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jplLeftLayout.createSequentialGroup()
+            jplLeftLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, jplLeftLayout.createSequentialGroup()
                 .addContainerGap(112, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(85, 85, 85))
@@ -81,11 +93,6 @@ public class SignUpRestaurant extends javax.swing.JFrame {
         jlEmail.setText("Restaurant Name");
 
         jtfRestaurantName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jtfRestaurantName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfRestaurantNameActionPerformed(evt);
-            }
-        });
 
         jlPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jlPassword.setForeground(new java.awt.Color(51, 51, 51));
@@ -116,11 +123,6 @@ public class SignUpRestaurant extends javax.swing.JFrame {
         });
 
         jtfEmail.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jtfEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfEmailActionPerformed(evt);
-            }
-        });
 
         jlEmail1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jlEmail1.setForeground(new java.awt.Color(51, 51, 51));
@@ -131,120 +133,103 @@ public class SignUpRestaurant extends javax.swing.JFrame {
         jlEmail2.setText("Position X");
 
         jtfPasswordField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jtfPasswordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfPasswordFieldActionPerformed(evt);
-            }
-        });
+
 
         jtfRestaurantPositionX.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jtfRestaurantPositionX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfRestaurantPositionXActionPerformed(evt);
-            }
-        });
+
 
         jlEmail3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jlEmail3.setForeground(new java.awt.Color(51, 51, 51));
         jlEmail3.setText("Position Y");
 
         jtfRestaurantPositionY.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jtfRestaurantPositionY.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfRestaurantPositionYActionPerformed(evt);
-            }
-        });
 
-        javax.swing.GroupLayout jplRightLayout = new javax.swing.GroupLayout(jplRight);
+        GroupLayout jplRightLayout = new GroupLayout(jplRight);
         jplRight.setLayout(jplRightLayout);
         jplRightLayout.setHorizontalGroup(
-            jplRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jplRightLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jplRightLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jplRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfRestaurantPositionY, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jplRightLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfRestaurantPositionY, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)
                     .addGroup(jplRightLayout.createSequentialGroup()
-                        .addComponent(jbtnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbtnRegister, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlLoginMessage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnLogin))
-                    .addGroup(jplRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lbSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jplRightLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lbSignUp, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jlEmail)
                         .addComponent(jlEmail1)
                         .addComponent(jlPassword)
-                        .addComponent(jlEmail3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlEmail3, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
                         .addComponent(jtfRestaurantName)
                         .addComponent(jtfEmail)
                         .addComponent(jtfPasswordField)
-                        .addComponent(jlEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtfRestaurantPositionX, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlEmail2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfRestaurantPositionX, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jplRightLayout.setVerticalGroup(
-            jplRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jplRightLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jplRightLayout.createSequentialGroup()
                 .addComponent(lbSignUp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfRestaurantName, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlEmail1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfEmail, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfPasswordField, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlEmail2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtfRestaurantPositionX, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtfRestaurantPositionX, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlEmail3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfRestaurantPositionY, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfRestaurantPositionY, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jplRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jplRightLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jlLoginMessage)
                     .addComponent(jbtnLogin)
-                    .addComponent(jbtnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbtnRegister, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 837, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jplLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jplLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(jplRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jplRight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 506, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jplLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jplRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jplLeft, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jplRight, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void jtfRestaurantNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfRestaurantNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfRestaurantNameActionPerformed
+    }
 
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
 
@@ -263,7 +248,7 @@ public class SignUpRestaurant extends javax.swing.JFrame {
 
         }
 
-    }//GEN-LAST:event_jbtnRegisterActionPerformed
+    }
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
         Login loginPage;
@@ -276,44 +261,25 @@ public class SignUpRestaurant extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.err.println("ERRO: " + ex.getMessage());
         }
-    }//GEN-LAST:event_jbtnLoginActionPerformed
+    }
 
-    private void jtfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfEmailActionPerformed
-
-    private void jtfPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfPasswordFieldActionPerformed
-
-    private void jtfRestaurantPositionXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfRestaurantPositionXActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfRestaurantPositionXActionPerformed
-
-    private void jtfRestaurantPositionYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfRestaurantPositionYActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfRestaurantPositionYActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton jbtnLogin;
-    private javax.swing.JButton jbtnRegister;
-    private javax.swing.JLabel jlEmail;
-    private javax.swing.JLabel jlEmail1;
-    private javax.swing.JLabel jlEmail2;
-    private javax.swing.JLabel jlEmail3;
-    private javax.swing.JLabel jlLoginMessage;
-    private javax.swing.JLabel jlPassword;
-    private javax.swing.JPanel jplLeft;
-    private javax.swing.JPanel jplRight;
-    private javax.swing.JTextField jtfEmail;
-    private javax.swing.JTextField jtfPasswordField;
-    private javax.swing.JTextField jtfRestaurantName;
-    private javax.swing.JTextField jtfRestaurantPositionX;
-    private javax.swing.JTextField jtfRestaurantPositionY;
-    private javax.swing.JLabel lbSignUp;
-    // End of variables declaration//GEN-END:variables
+    private JLabel jLabel3;
+    private JScrollPane jScrollPane1;
+    private JTextArea jTextArea1;
+    private JButton jbtnLogin;
+    private JButton jbtnRegister;
+    private JLabel jlEmail;
+    private JLabel jlEmail1;
+    private JLabel jlEmail2;
+    private JLabel jlEmail3;
+    private JLabel jlLoginMessage;
+    private JLabel jlPassword;
+    private JPanel jplLeft;
+    private JPanel jplRight;
+    private JTextField jtfEmail;
+    private JTextField jtfPasswordField;
+    private JTextField jtfRestaurantName;
+    private JTextField jtfRestaurantPositionX;
+    private JTextField jtfRestaurantPositionY;
+    private JLabel lbSignUp;
 }

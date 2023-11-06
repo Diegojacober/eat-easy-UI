@@ -1,9 +1,5 @@
 package com.diegojacober.delivery.view.ClientPages;
 
-import com.diegojacober.delivery.model.OrderModel;
-import com.diegojacober.delivery.model.UserModel;
-import com.diegojacober.delivery.services.PedidoService;
-import com.diegojacober.delivery.view.ClientView;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,12 +11,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.List;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import com.diegojacober.delivery.model.OrderModel;
+import com.diegojacober.delivery.model.UserModel;
+import com.diegojacober.delivery.services.PedidoService;
+import com.diegojacober.delivery.view.ClientView;
 
 public class OrdersPage extends ClientView {
 
@@ -83,7 +85,6 @@ public class OrdersPage extends ClientView {
                 new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                Color newColor = new Color(0, 102, 102);
                 btn.setBackground(new java.awt.Color(0, 102, 102));
                 btn.setForeground(new java.awt.Color(255, 255, 255));
             }

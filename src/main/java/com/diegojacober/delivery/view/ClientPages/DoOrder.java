@@ -1,18 +1,41 @@
 package com.diegojacober.delivery.view.ClientPages;
 
-import com.diegojacober.delivery.controller.ProductController;
-import com.diegojacober.delivery.model.ProductModel;
-import com.diegojacober.delivery.model.UserModel;
-import com.diegojacober.delivery.services.PedidoService;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.*;
-import javax.swing.event.*;
 
-public class DoOrder extends javax.swing.JFrame {
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JSpinner;
+import javax.swing.LayoutStyle;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import com.diegojacober.delivery.controller.ProductController;
+import com.diegojacober.delivery.model.ProductModel;
+import com.diegojacober.delivery.model.UserModel;
+import com.diegojacober.delivery.services.PedidoService;
+
+public class DoOrder extends JFrame {
 
     private JPanel panel;
     private JPanel centeredPanel;
@@ -56,7 +79,7 @@ public class DoOrder extends javax.swing.JFrame {
 
             label.setFont(new Font("Segoe UI", 0, 24));
             label.setForeground(new Color(255, 255, 255));
-            label.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+            label.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
             SpinnerModel modelSpinner = new SpinnerNumberModel(0, 0, 20, 1);
             JSpinner spinner = new JSpinner(modelSpinner);
@@ -112,16 +135,15 @@ public class DoOrder extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jlRestaurantName = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButtonReset = new javax.swing.JButton();
-        jBtnAddItems = new javax.swing.JButton();
+        jPanel1 = new JPanel();
+        jlRestaurantName = new JLabel();
+        jSeparator1 = new JSeparator();
+        jButtonReset = new JButton();
+        jBtnAddItems = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(610, 500, 0, 0));
         setMaximumSize(new java.awt.Dimension(650, 460));
         setMinimumSize(new java.awt.Dimension(630, 450));
@@ -161,56 +183,56 @@ public class DoOrder extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(jlRestaurantName, GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                             .addComponent(jSeparator1))
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonReset, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnAddItems, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonReset, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnAddItems, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jlRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlRestaurantName, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
                 .addGap(345, 345, 345)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnAddItems, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonReset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnAddItems, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonReset, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
         for (JSpinner spinner : spinners) {
             spinner.setValue(0);
         }
-    }//GEN-LAST:event_jButtonResetActionPerformed
+    }
 
     private void jBtnAddItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddItemsActionPerformed
         for (int i = 0; i < products.size(); i++) {
@@ -227,7 +249,7 @@ public class DoOrder extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Ops! falha, tente novamente mais tarde!");
         }
-    }//GEN-LAST:event_jBtnAddItemsActionPerformed
+    }
 
     private Double sumItems() {
         Double sum = 0.0;
@@ -243,11 +265,9 @@ public class DoOrder extends javax.swing.JFrame {
         return sum;
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnAddItems;
-    private javax.swing.JButton jButtonReset;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel jlRestaurantName;
-    // End of variables declaration//GEN-END:variables
+    private JButton jBtnAddItems;
+    private JButton jButtonReset;
+    private JPanel jPanel1;
+    private JSeparator jSeparator1;
+    private JLabel jlRestaurantName;
 }

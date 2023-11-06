@@ -1,20 +1,32 @@
 package com.diegojacober.delivery.view.ClientPages;
 
-import com.diegojacober.delivery.controller.RestaurantController;
-import com.diegojacober.delivery.model.RestaurantModel;
-import com.diegojacober.delivery.model.UserModel;
-import com.diegojacober.delivery.view.ClientView;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.swing.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import com.diegojacober.delivery.controller.RestaurantController;
+import com.diegojacober.delivery.model.RestaurantModel;
+import com.diegojacober.delivery.model.UserModel;
+import com.diegojacober.delivery.view.ClientView;
 
 public class HomePageClient extends ClientView {
 
@@ -34,7 +46,7 @@ public class HomePageClient extends ClientView {
 
         jpContent.remove(panelScrollable);
         panel.removeAll();
-        
+
         panelScrollable.getVerticalScrollBar().setUnitIncrement(50);
         panelScrollable.setVisible(false);
         jBtnNextArrow.setVisible(true);
@@ -84,7 +96,7 @@ public class HomePageClient extends ClientView {
         btn.setBackground(bgColor);
         btn.setFont(new Font("Segoe UI", 0, 24));
         btn.setForeground(new Color(51, 51, 51));
-        btn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         btn.addActionListener(new ActionListener() {
             @Override
@@ -100,26 +112,24 @@ public class HomePageClient extends ClientView {
 
         btn.addMouseListener(
                 new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                Color newColor = new Color(0, 102, 102);
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
 
-                btn.setBackground(new java.awt.Color(0, 102, 102));
-                btn.setForeground(new java.awt.Color(255, 255, 255));
-            }
+                        btn.setBackground(new java.awt.Color(0, 102, 102));
+                        btn.setForeground(new java.awt.Color(255, 255, 255));
+                    }
 
-        }
-        );
+                });
 
         btn.addMouseListener(
                 new MouseAdapter() {
-            @Override
-            public void mouseExited(MouseEvent e) {
-                btn.setBackground(new java.awt.Color(191, 191, 191));
-                btn.setForeground(new java.awt.Color(51, 51, 51));
-            }
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        btn.setBackground(new java.awt.Color(191, 191, 191));
+                        btn.setForeground(new java.awt.Color(51, 51, 51));
+                    }
 
-        });
+                });
 
         return btn;
     }

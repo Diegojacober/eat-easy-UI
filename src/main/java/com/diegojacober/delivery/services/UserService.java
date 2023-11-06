@@ -1,20 +1,22 @@
 package com.diegojacober.delivery.services;
 
-import com.diegojacober.delivery.dao.RestaurantDAO;
-import com.diegojacober.delivery.model.RestaurantModel;
-import com.diegojacober.delivery.model.UserModel;
 import java.time.LocalDateTime;
+
+import javax.swing.JOptionPane;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
-import javax.swing.JOptionPane;
-import org.apache.http.client.methods.HttpGet;
 import org.json.JSONObject;
+
+import com.diegojacober.delivery.dao.RestaurantDAO;
+import com.diegojacober.delivery.model.RestaurantModel;
+import com.diegojacober.delivery.model.UserModel;
 
 public class UserService {
 

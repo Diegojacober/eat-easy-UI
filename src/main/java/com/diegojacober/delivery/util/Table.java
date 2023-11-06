@@ -1,16 +1,9 @@
 package com.diegojacober.delivery.util;
 
 import java.awt.Font;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.RowSorter;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+
+import javax.swing.*;
+import javax.swing.table.*;
 
 public class Table {
 
