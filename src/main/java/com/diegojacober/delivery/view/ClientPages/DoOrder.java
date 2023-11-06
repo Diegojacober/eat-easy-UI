@@ -20,6 +20,7 @@ public class DoOrder extends javax.swing.JFrame {
     private Map<String, Integer> order = new HashMap<>();
     private ProductController controller = new ProductController();
     private List<ProductModel> products;
+    private Integer id;
     JSpinner[] spinners;
     JLabel[] labels;
     
@@ -27,6 +28,7 @@ public class DoOrder extends javax.swing.JFrame {
 
     public DoOrder(String name, Integer id, UserModel user) throws SQLException {
         loggedUser = user;
+        this.id = id;
         initComponents();
         loadComponents();
         setTitle(name);
@@ -220,7 +222,7 @@ public class DoOrder extends javax.swing.JFrame {
             }
         }
 
-        if (PedidoService.makeOrder(order, sumItems(), loggedUser)) {
+        if (PedidoService.makeOrder(order, sumItems(), loggedUser, id)) {
             JOptionPane.showMessageDialog(null, "Seu pedido foi efetuado com sucesso, obrigado pela preferência!!");
         } else {
             JOptionPane.showMessageDialog(null, "Ops! falha, tente novamente mais tarde!");

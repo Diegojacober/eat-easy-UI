@@ -16,13 +16,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Diego
- */
 public class HomePageClient extends ClientView {
 
-//   private RestaurantController controller = new RestaurantController();
     private JPanel panel;
     private JPanel centeredPanel;
     private JScrollPane panelScrollable;
