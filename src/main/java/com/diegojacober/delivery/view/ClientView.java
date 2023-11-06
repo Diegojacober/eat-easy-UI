@@ -32,7 +32,6 @@ public abstract class ClientView extends javax.swing.JFrame {
         jbtnHome = new javax.swing.JButton();
         jbtnLogout = new javax.swing.JButton();
         jbtnOrders = new javax.swing.JButton();
-        jbtnCart = new javax.swing.JButton();
         jlPageTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jBtnNextArrow = new javax.swing.JButton();
@@ -79,11 +78,6 @@ public abstract class ClientView extends javax.swing.JFrame {
             }
         });
 
-        jbtnCart.setBackground(new java.awt.Color(0, 102, 102));
-        jbtnCart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/cart.png"))); // NOI18N
-        jbtnCart.setBorder(null);
-        jbtnCart.setFocusPainted(false);
-
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
         jpMenuLayout.setHorizontalGroup(
@@ -92,7 +86,6 @@ public abstract class ClientView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnCart, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(7, Short.MAX_VALUE))
@@ -104,9 +97,7 @@ public abstract class ClientView extends javax.swing.JFrame {
                 .addComponent(jbtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbtnCart, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 443, Short.MAX_VALUE)
                 .addComponent(jbtnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -233,7 +224,6 @@ public abstract class ClientView extends javax.swing.JFrame {
     protected javax.swing.JButton jBtnBackArrow;
     protected javax.swing.JButton jBtnNextArrow;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton jbtnCart;
     private javax.swing.JButton jbtnHome;
     private javax.swing.JButton jbtnLogout;
     private javax.swing.JButton jbtnOrders;
