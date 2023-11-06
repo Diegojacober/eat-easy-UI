@@ -52,9 +52,7 @@ public class PedidoService {
             HttpEntity responseEntity = response.getEntity();
             String responseString = EntityUtils.toString(responseEntity);
 
-            JSONObject jsonResponse = new JSONObject(responseString);
             return true;
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
@@ -116,7 +114,7 @@ public class PedidoService {
                         orderJson.getInt("code"),
                         orderJson.getDouble("total"),
                         orderJson.getString("orderDate"),
-                        orderJson.getJSONArray("restaurant").getString(1),
+                        orderJson.getJSONObject("restaurant").getString("name"),
                         orderItems
                 ));
 

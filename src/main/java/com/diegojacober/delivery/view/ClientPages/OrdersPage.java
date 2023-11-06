@@ -39,21 +39,20 @@ public class OrdersPage extends ClientView {
     }
 
     private void loadOrders(UserModel user) {
-        System.out.println("ooiii");
         List<OrderModel> orders = PedidoService.getOrdersByUser(user);
 
-//        orders.forEach(order -> {
-//
-//            String txt = order.get();
-//
-//            JButton btn = createButton(txt, restaurant.getId());
-//
-//            panel.add(btn);
-//            panel.add(Box.createRigidArea(new Dimension(0, 20)));
-//
-//            jpContent.add(panelScrollable, BorderLayout.CENTER);
-//            panelScrollable.setVisible(true);
-//        });
+        orders.forEach(order -> {;
+
+            String txt = "R$ " + order.getTotal() + " - " + order.getRestaurantName() + " (" + order.getDate() + ")";
+
+            JButton btn = createButton(txt);
+
+            panel.add(btn);
+            panel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+            jpContent.add(panelScrollable, BorderLayout.CENTER);
+            panelScrollable.setVisible(true);
+        });
     }
 
     private JButton createButton(String txt) {
