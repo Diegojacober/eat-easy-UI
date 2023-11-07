@@ -30,20 +30,20 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.13</version> <!-- Use a versão mais recente -->
+            <version>4.5.13</version>
         </dependency>
 
         <!-- Dependência para a biblioteca JSON -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20210307</version> <!-- Use a versão mais recente -->
+            <version>20210307</version>
         </dependency>
 
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>
-            <version>1.5.0</version>
+            <version>1.5.3</version>
         </dependency>
     </dependencies>
 </project>

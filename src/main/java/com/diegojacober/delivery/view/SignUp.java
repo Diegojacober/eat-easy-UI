@@ -15,6 +15,7 @@ public class SignUp extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new JPanel();
@@ -214,7 +215,7 @@ public class SignUp extends JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)));
 
         pack();
-    }
+    } // </editor-fold>//GEN-END:initComponents
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {
         Login loginPage;
@@ -261,6 +262,7 @@ public class SignUp extends JFrame {
 
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel jLabel3;
     private JPasswordField jNewPasswordField;
     private JPanel jPanel3;
@@ -277,4 +279,5 @@ public class SignUp extends JFrame {
     private JTextField jtfFullName;
     private JTextField jtfNewEmail;
     private JLabel lbSignUp;
+    // End of variables declaration//GEN-END:variables
 }

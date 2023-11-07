@@ -30,6 +30,7 @@ public class SignUpRestaurant extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new JScrollPane();
@@ -229,7 +230,7 @@ public class SignUpRestaurant extends JFrame {
         );
 
         pack();
-    }
+    }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
 
@@ -263,6 +264,7 @@ public class SignUpRestaurant extends JFrame {
         }
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel jLabel3;
     private JScrollPane jScrollPane1;
     private JTextArea jTextArea1;
@@ -282,4 +284,5 @@ public class SignUpRestaurant extends JFrame {
     private JTextField jtfRestaurantPositionX;
     private JTextField jtfRestaurantPositionY;
     private JLabel lbSignUp;
+    // End of variables declaration//GEN-END:variables
 }

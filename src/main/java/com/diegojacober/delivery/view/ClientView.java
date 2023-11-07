@@ -35,6 +35,7 @@ public abstract class ClientView extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jpContent = new JPanel();
@@ -157,7 +158,7 @@ public abstract class ClientView extends JFrame {
         );
 
         pack();
-    }
+    } // </editor-fold>//GEN-END:initComponents
 
     private void jbtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHomeActionPerformed
         HomePageClient HomePageFrame;
@@ -211,6 +212,7 @@ public abstract class ClientView extends JFrame {
         }
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     protected JButton jBtnBackArrow;
     protected JButton jBtnNextArrow;
     private JSeparator jSeparator1;
@@ -220,4 +222,5 @@ public abstract class ClientView extends JFrame {
     protected JLabel jlPageTitle;
     protected JPanel jpContent;
     private JPanel jpMenu;
+    // End of variables declaration//GEN-END:variables
 }

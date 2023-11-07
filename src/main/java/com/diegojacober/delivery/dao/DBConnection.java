@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class DBConnection {
     private static final String driverClass = "org.postgresql.Driver";
-    private static final String url = "jdbc:postgresql://localhost:5432/eateasy";
+    private static final String url = "jdbc:postgresql://localhost:5423/eateasy";
     private static final String user = "dev";
     private static final String password = "123456";
     
