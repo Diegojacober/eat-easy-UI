@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 
 public class HomePageRestaurant extends RestaurantView {
 
-    public List<ProductSales> productsSales = new ArrayList<>();
-
     public HomePageRestaurant(UserModel user) throws IOException {
         super(user);
         jlPageTitle.setText("My Restaurant");
@@ -24,6 +22,8 @@ public class HomePageRestaurant extends RestaurantView {
     public void initPageComponents() {
         jBtnNextArrow.setVisible(false);
         jBtnBackArrow.setVisible(false);
+        
+        List<ProductSales> productsSales = new ArrayList<>();
         
         productsSales.addAll(Arrays.asList(
                 SalesService.getSalesProduct(loggedUser, 1),

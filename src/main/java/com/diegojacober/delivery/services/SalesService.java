@@ -37,13 +37,15 @@ public class SalesService {
             JSONObject jsonResponse = new JSONObject(responseString);
 
             if (statusCode == 200) {
-                return new ProductSales(
+                ProductSales p = new ProductSales(
                         jsonResponse.getInt("productId"),
                         jsonResponse.getString("productName"),
                         jsonResponse.getDouble("productValue"),
                         jsonResponse.getInt("sales"),
                         jsonResponse.getDouble("total")
                 );
+                
+                return p;
             }
 
             throw new Exception(jsonResponse.toString());
