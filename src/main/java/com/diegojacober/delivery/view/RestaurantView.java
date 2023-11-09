@@ -28,9 +28,9 @@ public abstract class RestaurantView extends JFrame {
 
     public RestaurantView(UserModel user) throws IOException {
         this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
+        this.loggedUser = user;
         initComponents();
         initPageComponents();
-        this.loggedUser = user;
     }
 
     @SuppressWarnings("unchecked")

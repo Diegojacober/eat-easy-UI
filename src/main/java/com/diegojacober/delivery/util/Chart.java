@@ -1,6 +1,8 @@
 package com.diegojacober.delivery.util;
 
+import com.diegojacober.delivery.model.ProductSales;
 import java.awt.BorderLayout;
+import java.util.List;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -10,8 +12,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 
 public class Chart {
-    public static JPanel createChartPanel() {
-        DefaultCategoryDataset dataset = createDataset();
+    public static JPanel createChartPanel(List<ProductSales> products) {
+        DefaultCategoryDataset dataset = createDataset(products);
         JFreeChart barChart = createBarChart(dataset);
         ChartPanel chartPanel = new ChartPanel(barChart);
 
@@ -24,22 +26,19 @@ public class Chart {
         return panel;
     }
     
-    public static DefaultCategoryDataset createDataset() {
+    public static DefaultCategoryDataset createDataset(List<ProductSales> products) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(1.0, "Janeiro", "Value 1");
-        dataset.addValue(2.0, "Category 1", "Value 2");
-        dataset.addValue(3.0, "Category 1", "Value 3");
-        dataset.addValue(4.0, "Category 2", "Value 1");
-        dataset.addValue(5.0, "Category 2", "Value 2");
-        dataset.addValue(6.0, "Category 2", "Value 3");
+        dataset.addValue(products.get(0).getSalesQuantity(), products.get(0).getProductName(), products.get(0).getProductName());
+        dataset.addValue(products.get(1).getSalesQuantity(), products.get(1).getProductName(), products.get(1).getProductName());
+        dataset.addValue(products.get(2).getSalesQuantity(), products.get(2).getProductName(), products.get(2).getProductName());
         return dataset;
     }
 
     public static JFreeChart createBarChart(DefaultCategoryDataset dataset) {
         return ChartFactory.createBarChart(
-                "Vendas por mês",     // Título do gráfico
-                "Mês",             // Rótulo do eixo X
-                "Valor",                // Rótulo do eixo Y
+                "Vendas de produtos",     // Título do gráfico
+                "Produto",             // Rótulo do eixo X
+                "Quantidade",                // Rótulo do eixo Y
                 dataset,                // Conjunto de dados
                 PlotOrientation.VERTICAL,
                 true, true, false
