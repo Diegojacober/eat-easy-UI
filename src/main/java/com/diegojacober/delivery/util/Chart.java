@@ -28,9 +28,9 @@ public class Chart {
     
     public static DefaultCategoryDataset createDataset(List<ProductSales> products) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(products.get(0).getSalesQuantity(), products.get(0).getProductName(), products.get(0).getProductName());
-        dataset.addValue(products.get(1).getSalesQuantity(), products.get(1).getProductName(), products.get(1).getProductName());
-        dataset.addValue(products.get(2).getSalesQuantity(), products.get(2).getProductName(), products.get(2).getProductName());
+        dataset.addValue(products.get(0).getSalesQuantity(), products.get(0).getSalesTotal(), products.get(0).getProductName());
+        dataset.addValue(products.get(1).getSalesQuantity(), products.get(1).getSalesTotal(), products.get(1).getProductName());
+        dataset.addValue(products.get(2).getSalesQuantity(), products.get(2).getSalesTotal(), products.get(2).getProductName());
         return dataset;
     }
 
