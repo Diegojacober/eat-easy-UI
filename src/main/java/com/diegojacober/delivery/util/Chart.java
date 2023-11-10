@@ -2,7 +2,9 @@ package com.diegojacober.delivery.util;
 
 import com.diegojacober.delivery.model.ProductSales;
 import java.awt.BorderLayout;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -18,7 +20,7 @@ public class Chart {
         ChartPanel chartPanel = new ChartPanel(barChart);
 
         JPanel panel = new JPanel();
-        panel.setBounds(80, 60, 410, 190);
+        panel.setBounds(80, 60, 480, 200);
         panel.setLayout(new BorderLayout());
         panel.add(chartPanel);
 
@@ -28,9 +30,10 @@ public class Chart {
     
     public static DefaultCategoryDataset createDataset(List<ProductSales> products) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(products.get(0).getSalesQuantity(), products.get(0).getSalesTotal(), products.get(0).getProductName());
-        dataset.addValue(products.get(1).getSalesQuantity(), products.get(1).getSalesTotal(), products.get(1).getProductName());
-        dataset.addValue(products.get(2).getSalesQuantity(), products.get(2).getSalesTotal(), products.get(2).getProductName());
+        dataset.addValue(products.get(0).getSalesQuantity(), products.get(0).getProductName(), NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(products.get(0).getSalesTotal()));
+        dataset.addValue(products.get(1).getSalesQuantity(), products.get(1).getProductName(), NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(products.get(1).getSalesTotal()));
+        dataset.addValue(products.get(2).getSalesQuantity(), products.get(2).getProductName(), NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(products.get(2).getSalesTotal()));
+        dataset.addValue(products.get(3).getSalesQuantity(), products.get(3).getProductName(), NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(products.get(3).getSalesTotal()));
         return dataset;
     }
 

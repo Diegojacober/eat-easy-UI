@@ -28,6 +28,7 @@ public class HomePageRestaurant extends RestaurantView {
         productsSales.addAll(Arrays.asList(
                 SalesService.getSalesProduct(loggedUser, 1),
                 SalesService.getSalesProduct(loggedUser, 2),
+                SalesService.getSalesProduct(loggedUser, 4),
                 SalesService.getSalesProduct(loggedUser, 8)
         ));
         
