@@ -38,7 +38,7 @@ public class RestaurantDAO {
     public List<RestaurantModel> retrieve(RestaurantModel restaurant, Integer page) throws SQLException {
         List<RestaurantModel> restaurants = new ArrayList<>();
         if (restaurant.getId() == null) {
-            query = "SELECT * FROM restaurants order by created_at DESC LIMIT 10 OFFSET "+ (page * 10);
+            query = "SELECT * FROM restaurants order by created_at DESC LIMIT 10 OFFSET " + (page * 10);
         } else {
             query = "SELECT * FROM restaurants WHERE id=" + restaurant.getId();
         }
@@ -46,7 +46,7 @@ public class RestaurantDAO {
         try {
             stmt = DBConnection.openConnection().prepareStatement(query);
             resultSet = stmt.executeQuery();
-            
+
             while (resultSet.next()) {
                 restaurants.add(
                         new RestaurantModel(
@@ -67,20 +67,46 @@ public class RestaurantDAO {
         return restaurants;
     }
 
-    public void delete(Integer id) throws SQLException {
+    public RestaurantModel retrieve(String restaurantName) throws SQLException {
 
-    }
-    
-    public Integer countRows() throws SQLException{
-        
-        query = "SELECT COUNT(*) as t_rows FROM restaurants";
-        
+        query = "SELECT * FROM restaurants WHERE name=" + "'" + restaurantName + "'";
+        RestaurantModel restaurant = new RestaurantModel();
+
         try {
             stmt = DBConnection.openConnection().prepareStatement(query);
             resultSet = stmt.executeQuery();
-            
-            
-            while(resultSet.next()) {
+
+            while (resultSet.next()) {
+                restaurant = new RestaurantModel(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getTimestamp("created_at").toLocalDateTime(),
+                        resultSet.getString("location_x"),
+                        resultSet.getString("location_y")
+                );
+
+            }
+            stmt.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return restaurant;
+    }
+
+    public void delete(Integer id) throws SQLException {
+
+    }
+
+    public Integer countRows() throws SQLException {
+
+        query = "SELECT COUNT(*) as t_rows FROM restaurants";
+
+        try {
+            stmt = DBConnection.openConnection().prepareStatement(query);
+            resultSet = stmt.executeQuery();
+
+            while (resultSet.next()) {
                 return resultSet.getInt("t_rows");
             }
 
@@ -88,7 +114,7 @@ public class RestaurantDAO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        return 0;  
+
+        return 0;
     }
 }

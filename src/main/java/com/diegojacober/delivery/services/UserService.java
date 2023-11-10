@@ -48,7 +48,8 @@ public class UserService {
 
             String accessToken = jsonResponse.get("access_token").toString();
             String refreshToken = jsonResponse.get("refresh_token").toString();
-            return new UserModel(username, accessToken, refreshToken);
+            String name = jsonResponse.get("name").toString();
+            return new UserModel(username, accessToken, refreshToken, name);
 
         } catch (Exception e) {
             return new UserModel();
@@ -144,7 +145,7 @@ public class UserService {
             String accessToken = jsonResponse.get("access_token").toString();
             String refreshToken = jsonResponse.get("refresh_token").toString();
 
-            return new UserModel(name, accessToken, refreshToken);
+            return new UserModel(name, accessToken, refreshToken, name);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -209,7 +210,7 @@ public class UserService {
                 return new UserModel();
             }
 
-            return new UserModel(name, accessToken, refreshToken);
+            return new UserModel(name, accessToken, refreshToken, name);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

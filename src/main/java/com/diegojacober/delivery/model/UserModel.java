@@ -4,16 +4,18 @@ package com.diegojacober.delivery.model;
 public class UserModel {
     
     private String email;
+    private String name;
     private String accessToken;
     private String refreshToken;
 
     public UserModel() {
     }
 
-    public UserModel(String email, String accessToken, String refreshToken) {
+    public UserModel(String email, String accessToken, String refreshToken, String name) {
         this.email = email;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -39,6 +41,16 @@ public class UserModel {
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -11,9 +11,6 @@ public class RestaurantController {
 
 
     public void controllerSave(RestaurantModel restaurant) {
-        //Validar dados
-
-        //salvar no banco de dados
         dao.save(restaurant);
     }
 
@@ -23,6 +20,10 @@ public class RestaurantController {
 
     public List<RestaurantModel> controllerRetrieve(RestaurantModel restaurant, Integer page) throws SQLException {
         return dao.retrieve(restaurant, page);
+    }
+    
+    public RestaurantModel controllerRetrieve(String restaurantName) throws SQLException {
+        return dao.retrieve(restaurantName);
     }
     
     public Integer countRows() throws SQLException {
