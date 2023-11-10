@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ProductDAO {
 
@@ -13,8 +14,24 @@ public class ProductDAO {
     private PreparedStatement stmt;
     private ResultSet resultSet;
 
-    public void save(Object... value) {
+    public void save(ProductModel product, Integer restaurant_id) {
+        query = "INSERT INTO products (name, value, restaurant_id) VALUES (?, ?, ?)";
+       
 
+        try {
+            stmt = DBConnection.openConnection().prepareStatement(query);
+
+            stmt.setString(1, product.getName());
+            stmt.setDouble(2, product.getValue());
+            stmt.setInt(3, restaurant_id);
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public List<ProductModel> retrieve(Integer restaurant_id) throws SQLException {

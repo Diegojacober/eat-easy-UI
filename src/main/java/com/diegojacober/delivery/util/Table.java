@@ -7,7 +7,7 @@ import javax.swing.table.*;
 
 public class Table {
 
-    public JTable createTable(JPanel jpn, Object[] width, Object[] pos, Object[] col) throws NullPointerException {
+    public JTable createTable(JPanel jpn, Object[] width, Object[] pos, Object[] col, int[] bounds) throws NullPointerException {
         JTable table = new JTable(new DefaultTableModel());
 
         table.setVisible(true);
@@ -17,7 +17,7 @@ public class Table {
         table.setFont(new Font("Arial", Font.BOLD, 16));
         JScrollPane jsp = new JScrollPane(table);
         table.setRowHeight(25);
-        jsp.setBounds(10, 40, 580, 380);
+        jsp.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
         jsp.setVisible(true);
         jpn.add(jsp);
 

@@ -36,11 +36,12 @@ public class OrderPage extends JFrame {
         jlOrderValue.setText(NumberFormat.getCurrencyInstance(new Locale("pt", "BR"))
                 .format(order.getTotal()));
         jlOrderDate.setText(order.getDate());
-
+        int[] bounds = {10, 40, 580, 380};
         table = utilTable.createTable(jpnContent,
                 new Object[]{250, 200, 130},
                 new Object[]{"center", "left", "left"},
-                new Object[]{"PRODUCT", "PRICE", "QUANTITY"}
+                new Object[]{"PRODUCT", "PRICE", "QUANTITY"},
+                bounds
         );
 
         table.setSelectionBackground(new Color(0, 102, 102));

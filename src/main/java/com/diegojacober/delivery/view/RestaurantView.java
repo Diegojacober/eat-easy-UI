@@ -3,28 +3,25 @@ package com.diegojacober.delivery.view;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.LayoutStyle;
-import javax.swing.WindowConstants;
 
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
+import com.diegojacober.delivery.view.RestaurantPages.ProductsPage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class RestaurantView extends JFrame {
+    
+    public UserModel loggedUser;
 
     public abstract void initPageComponents();
 
     public abstract void nextButton();
 
     public abstract void backButton();
-    public UserModel loggedUser;
+    
 
     public RestaurantView(UserModel user) throws IOException {
         this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
@@ -82,12 +79,21 @@ public abstract class RestaurantView extends JFrame {
         jbtnItems.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/items.png"))); // NOI18N
         jbtnItems.setBorder(null);
         jbtnItems.setFocusPainted(false);
-
+        jbtnItems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnItemsActionPerformed(evt);
+            }
+        });
 
         jbtnOrders1.setBackground(new java.awt.Color(0, 102, 102));
         jbtnOrders1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/diegojacober/delivery/img/orders.png"))); // NOI18N
         jbtnOrders1.setBorder(null);
         jbtnOrders1.setFocusPainted(false);
+        jbtnOrders1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnOrders1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
@@ -141,6 +147,11 @@ public abstract class RestaurantView extends JFrame {
                 jBtnNextArrowMouseClicked(evt);
             }
         });
+        jBtnNextArrow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnNextArrowActionPerformed(evt);
+            }
+        });
         jpContent.add(jBtnNextArrow);
         jBtnNextArrow.setBounds(580, 580, 60, 50);
 
@@ -150,6 +161,11 @@ public abstract class RestaurantView extends JFrame {
         jBtnBackArrow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnBackArrowMouseClicked(evt);
+            }
+        });
+        jBtnBackArrow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBackArrowActionPerformed(evt);
             }
         });
         jpContent.add(jBtnBackArrow);
@@ -180,8 +196,6 @@ public abstract class RestaurantView extends JFrame {
         } catch (IOException ex) {
             System.err.println("ERRO: " + ex.getMessage());
         }
-
-
     }
 
     private void jbtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,16 +212,38 @@ public abstract class RestaurantView extends JFrame {
             }
         }
     }
+    
+    private void jbtnOrders1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOrders1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnOrders1ActionPerformed
   
+    private void jbtnItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnItemsActionPerformed
+        try {
+            ProductsPage productsPage = new ProductsPage(loggedUser);
+            productsPage.setVisible(true);
+            productsPage.pack();
+            productsPage.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(RestaurantView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbtnItemsActionPerformed
 
     private void jBtnNextArrowMouseClicked(java.awt.event.MouseEvent evt) {                                           
         nextButton();
     }
 
+    private void jBtnNextArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNextArrowActionPerformed
+
+    }//GEN-LAST:event_jBtnNextArrowActionPerformed
 
     private void jBtnBackArrowMouseClicked(java.awt.event.MouseEvent evt) {                                           
         backButton();
     }
+    
+     private void jBtnBackArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBackArrowActionPerformed
+
+    }//GEN-LAST:event_jBtnBackArrowActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton jBtnBackArrow;

@@ -20,18 +20,20 @@ import com.diegojacober.delivery.view.ClientPages.OrdersPage;
 
 public abstract class ClientView extends JFrame {
 
+    public UserModel loggedUser;
+
     public abstract void initPageComponents();
 
     public abstract void nextButton();
 
     public abstract void backButton();
-    public UserModel loggedUser;
 
     public ClientView(UserModel user) throws IOException {
         this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
+        this.loggedUser = user;
         initComponents();
         initPageComponents();
-        this.loggedUser = user;
+
     }
 
     @SuppressWarnings("unchecked")
@@ -160,7 +162,7 @@ public abstract class ClientView extends JFrame {
         pack();
     } // </editor-fold>//GEN-END:initComponents
 
-    private void jbtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHomeActionPerformed
+    private void jbtnHomeActionPerformed(java.awt.event.ActionEvent evt) {
         HomePageClient HomePageFrame;
         try {
             HomePageFrame = new HomePageClient(loggedUser);
@@ -172,10 +174,9 @@ public abstract class ClientView extends JFrame {
             System.err.println("ERRO: " + ex.getMessage());
         }
 
-
     }
 
-    private void jbtnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOrdersActionPerformed
+    private void jbtnOrdersActionPerformed(java.awt.event.ActionEvent evt) {
         OrdersPage OrdersPageFrame;
         try {
             OrdersPageFrame = new OrdersPage(loggedUser);
@@ -188,15 +189,15 @@ public abstract class ClientView extends JFrame {
         }
     }
 
-    private void jBtnNextArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnNextArrowMouseClicked
+    private void jBtnNextArrowMouseClicked(java.awt.event.MouseEvent evt) {
         nextButton();
     }
 
-    private void jBtnBackArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnBackArrowMouseClicked
+    private void jBtnBackArrowMouseClicked(java.awt.event.MouseEvent evt) {
         backButton();
     }
 
-    private void jbtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogoutActionPerformed
+    private void jbtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {
         if (UserService.logout(loggedUser)) {
             Login loginPage;
             try {
