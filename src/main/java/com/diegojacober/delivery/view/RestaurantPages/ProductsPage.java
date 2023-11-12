@@ -34,45 +34,48 @@ public class ProductsPage extends RestaurantView {
         JLabel JLabelPrice = new JLabel();
         
         JBtnSaveProduct.setBackground(new java.awt.Color(0, 102, 102));
+        JBtnSaveProduct.setForeground(Color.WHITE);
         JBtnSaveProduct.setFont(new java.awt.Font("Segoe UI", 1, 12));
         JBtnSaveProduct.setText("Salvar");
-        JBtnSaveProduct.setBounds(100, 220, 110, 30);
+        JBtnSaveProduct.setBounds(100, 200, 110, 30);
         jpContent.add(JBtnSaveProduct);
         
         JBtnDeleteProduct.setBackground(new java.awt.Color(255, 0, 0));
+        JBtnDeleteProduct.setForeground(Color.WHITE);
         JBtnDeleteProduct.setFont(new java.awt.Font("Segoe UI", 1, 12));
         JBtnDeleteProduct.setText("Deletar");
-        JBtnDeleteProduct.setBounds(120, 220, 110, 30);
+        JBtnDeleteProduct.setBounds(220, 200, 110, 30);
         jpContent.add(JBtnDeleteProduct);
         
         
         JBtnUpdateProduct.setBackground(new java.awt.Color(0, 60, 255));
         JBtnUpdateProduct.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        JBtnUpdateProduct.setForeground(Color.WHITE);
         JBtnUpdateProduct.setText("Atualizar");
-        JBtnUpdateProduct.setBounds(140, 220, 110, 30);
+        JBtnUpdateProduct.setBounds(340, 200, 110, 30);
         jpContent.add(JBtnUpdateProduct);
         
         JLabelName.setBackground(new java.awt.Color(255, 255, 255));
         JLabelName.setForeground(new java.awt.Color(51, 51, 51));
         JLabelName.setText("Nome do produto");
         jpContent.add(JLabelName);
-        JLabelName.setBounds(240, 170, 100, 20);
+        JLabelName.setBounds(100, 70, 100, 20);
         
         JTextProductName.setBackground(new java.awt.Color(204, 204, 204));
         JTextProductName.setForeground(new java.awt.Color(51, 51, 51));
         jpContent.add(JTextProductName);
-        JTextProductName.setBounds(240, 180, 200, 30);
+        JTextProductName.setBounds(100, 90, 200, 30);
         
         JLabelPrice.setBackground(new java.awt.Color(255, 255, 255));
         JLabelPrice.setForeground(new java.awt.Color(51, 51, 51));
         JLabelPrice.setText("Preço do produto");
         jpContent.add(JLabelPrice);
-        JLabelPrice.setBounds(280, 170, 100, 20);
+        JLabelPrice.setBounds(310, 70, 100, 20);
         
         JTextProductPrice.setBackground(new java.awt.Color(204, 204, 204));
         JTextProductPrice.setForeground(new java.awt.Color(51, 51, 51));
         jpContent.add(JTextProductPrice);
-        JTextProductPrice.setBounds(280, 180, 200, 30);
+        JTextProductPrice.setBounds(310, 90, 200, 30);
 
         
         int[] bounds =  {100, 250, 950, 380};
