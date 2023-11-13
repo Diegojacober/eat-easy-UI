@@ -23,7 +23,7 @@ public class Table {
 
         RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableModel);
         table.setRowSorter(sorter);
-
+        table.setDefaultEditor(Object.class, null);
         for (int i = 0; i < col.length; i++) {
             tableModel.addColumn(col[i]);
         }
