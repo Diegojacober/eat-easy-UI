@@ -96,10 +96,19 @@ public class ProductDAO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public void delete(Integer id) throws SQLException {
+        query = "DELETE FROM products where id=?";
+        try {
+            stmt = DBConnection.openConnection().prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.execute();
+            stmt.close();
 
+            JOptionPane.showMessageDialog(null, "Produto deletado");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
     }
 }

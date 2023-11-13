@@ -13,9 +13,14 @@ public class ProductController {
     public List<ProductModel> controllerRetrieve(Integer restaurant_id) throws SQLException {
         return dao.retrieve(restaurant_id);
     }
+    
+    public void controllerDeleteProduct(Integer productId) throws SQLException {
+        dao.delete(productId);
+    }
 
     public void controllerRetrieveTable(Integer restaurant_id, DefaultTableModel model) throws SQLException {
         try {
+            model.setNumRows(0);
             dao.retrieveTable(restaurant_id, model);
         } catch (SQLException ex) {
             System.out.println("erro: " + ex.getMessage());

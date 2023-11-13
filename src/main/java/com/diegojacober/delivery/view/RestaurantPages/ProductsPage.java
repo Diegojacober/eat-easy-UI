@@ -33,6 +33,7 @@ public class ProductsPage extends RestaurantView {
     private JButton JBtnSaveProduct;
     private JButton JBtnDeleteProduct;
     private JButton JBtnUpdateProduct;
+    private JButton JBtnCancel;
     private JTextField JTextProductName;
     private JTextField JTextProductPrice;
     private JTextField JTextProductId;
@@ -52,16 +53,22 @@ public class ProductsPage extends RestaurantView {
         jBtnNextArrow.setVisible(false);
         jlPageTitle.setText("My products");
 
+        createTable();
+        try {
+            tableData();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     private void tableData() throws SQLException {
         if (restaurant == null) {
             restaurant = restaurantController.controllerRetrieve(loggedUser.getName());
         }
-        //limpa a tabela
-        model.setNumRows(0);
         //pega todos os produtos
         productController.controllerRetrieveTable(restaurant.getId(), model);
+
     }
 
     @Override
@@ -73,6 +80,7 @@ public class ProductsPage extends RestaurantView {
         JBtnSaveProduct = new JButton("Salvar");
         JBtnDeleteProduct = new JButton("Deletar");
         JBtnUpdateProduct = new JButton("Atualizar");
+        JBtnCancel = new JButton("Cancelar");
         JTextProductName = new JTextField();
         JTextProductPrice = new JTextField();
         JTextProductId = new JTextField();
@@ -100,6 +108,14 @@ public class ProductsPage extends RestaurantView {
         JBtnUpdateProduct.setText("Atualizar");
         JBtnUpdateProduct.setBounds(340, 200, 110, 30);
         jpContent.add(JBtnUpdateProduct);
+
+        JBtnCancel.setBackground(new Color(155, 155, 155));
+        JBtnCancel.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        JBtnCancel.setForeground(Color.BLACK);
+        JBtnCancel.setText("Cancelar");
+        JBtnCancel.setBounds(600, 200, 110, 30);
+        JBtnCancel.setEnabled(false);
+        jpContent.add(JBtnCancel);
 
         JLabelName.setBackground(new java.awt.Color(255, 255, 255));
         JLabelName.setForeground(new java.awt.Color(51, 51, 51));
@@ -150,17 +166,19 @@ public class ProductsPage extends RestaurantView {
 
         JBtnDeleteProduct.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                JBtnDeleteProductActionPerformed(evt);
+                try {
+                    JBtnDeleteProductActionPerformed(evt);
+                } catch (SQLException ex) {
+                    System.out.println("erro: " + ex.getMessage());
+                }
             }
         });
 
-        createTable();
-
-        try {
-            tableData();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        JBtnCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                JBtnCancelActionPerformed(evt);
+            }
+        });
 
         disableButtons(true);
     }
@@ -206,19 +224,50 @@ public class ProductsPage extends RestaurantView {
     }
 
     private void updateForm() {
-        System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+        String value = table.getValueAt(table.getSelectedRow(), 2).toString().replace("R$", "").trim().replace(",", ".");
         JTextProductId.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
         JTextProductName.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
-        JTextProductPrice.setText(table.getValueAt(table.getSelectedRow(), 2).toString().replace("R$", "").replace(",", "."));
+        JTextProductPrice.setText(value.substring(1));
         disableButtons(false);
     }
 
+    private void JBtnCancelActionPerformed(ActionEvent evt) {
+        JTextProductId.setText("");
+        JTextProductName.setText("");
+        JTextProductPrice.setText("");
+        disableButtons(true);
+    }
+
     private void JBtnUpdateProductActionPerformed(ActionEvent evt) {
+        if (validFields()) {
+            saveProduct(Integer.parseInt(JTextProductId.getText()), false);
+            JTextProductId.setText("");
+            JTextProductName.setText("");
+            JTextProductPrice.setText("");
+        }
 
     }
 
-    private void JBtnDeleteProductActionPerformed(ActionEvent evt) {
+    private void JBtnDeleteProductActionPerformed(ActionEvent evt) throws SQLException {
 
+        if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o produto?", "SIM", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            disableButtons(false);
+            deleteProduct(Integer.valueOf(JTextProductId.getText()));
+            JTextProductId.setText("");
+            JTextProductName.setText("");
+            JTextProductPrice.setText("");
+            try {
+                tableData();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada");
+        }
+    }
+
+    private void deleteProduct(Integer id) throws SQLException {
+        productController.controllerDeleteProduct(id);
     }
 
     private void saveProduct(int id, boolean isInsert) {
@@ -236,7 +285,7 @@ public class ProductsPage extends RestaurantView {
         }
 
         try {
-            productPriceConverted = Double.valueOf(productValue.replace(",", "."));
+            productPriceConverted = Double.valueOf(productValue.trim().replace(",", "."));
 
             return true;
         } catch (NumberFormatException ex) {
@@ -249,6 +298,7 @@ public class ProductsPage extends RestaurantView {
         JBtnSaveProduct.setEnabled(newOrExistent);
         JBtnUpdateProduct.setEnabled(!newOrExistent);
         JBtnDeleteProduct.setEnabled(!newOrExistent);
+        JBtnCancel.setEnabled(!newOrExistent);
     }
 
     @Override
