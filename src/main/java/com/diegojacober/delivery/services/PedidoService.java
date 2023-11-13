@@ -140,4 +140,74 @@ public class PedidoService {
             }
         }
     }
+    
+    public  static List<OrderModel> getOrdersByRestaurant(Integer restaurantId, UserModel loggedUser) {
+        String path = URL + "/orders/restaurants/"+restaurantId;
+        System.out.println(path);
+        List<OrderModel> orders = new ArrayList<>();
+
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpResponse response = null;
+
+        try {
+            HttpGet httpGet = new HttpGet(path);
+
+            httpGet.setHeader("Content-Type", "application/json");
+            httpGet.setHeader("Authorization", "Bearer " + loggedUser.getAccessToken());
+
+            response = httpClient.execute(httpGet);
+
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            HttpEntity responseEntity = response.getEntity();
+            String responseString = EntityUtils.toString(responseEntity);
+
+            JSONObject jsonResponse = new JSONObject(responseString);
+
+            JSONArray jsonArray = jsonResponse.getJSONArray("data");
+
+            for (Object order : jsonArray) {
+                JSONObject orderJson = (JSONObject) order;
+
+                List<OrderItemModel> orderItems = new ArrayList<>();
+
+                JSONArray itemsArray = orderJson.getJSONArray("items");
+
+                for (Object item : itemsArray) {
+                    JSONObject itemJson = (JSONObject) item;
+                    orderItems.add(new OrderItemModel(
+                            itemJson.getString("name"),
+                            itemJson.getInt("quantity"),
+                            itemJson.getDouble("price")
+                    ));
+                }
+
+                orders.add(new OrderModel(
+                        orderJson.getInt("code"),
+                        orderJson.getDouble("total"),
+                        orderJson.getString("orderDate"),
+                        orderJson.getJSONObject("restaurant").getString("name"),
+                        orderItems,
+                        orderJson.getString("clientName")
+                ));
+
+            }
+
+            return orders;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        } finally {
+            try {
+                if (response != null) {
+                    response.close();
+                }
+                if (httpClient != null) {
+                    httpClient.close();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+            }
+        }
+    }
 }

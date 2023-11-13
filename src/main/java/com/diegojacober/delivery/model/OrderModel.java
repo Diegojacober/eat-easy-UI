@@ -9,6 +9,7 @@ public class OrderModel {
     private String date;
     private String restaurantName;
     private List<OrderItemModel> items;
+    private String clientName;
 
     public String getDate() {
         return date;
@@ -34,6 +35,15 @@ public class OrderModel {
         this.items = items;
     }
 
+    public OrderModel(Integer id, Double total, String date, String restaurantName, List<OrderItemModel> items, String clientName) {
+        this.id = id;
+        this.total = total;
+        this.date = date;
+        this.restaurantName = restaurantName;
+        this.items = items;
+        this.clientName = clientName;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -57,4 +67,13 @@ public class OrderModel {
     public void addItems(OrderItemModel item) {
         this.items.add(item);
     }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
 }

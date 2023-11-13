@@ -1,6 +1,12 @@
-package com.diegojacober.delivery.view.ClientPages;
+package com.diegojacober.delivery.view.RestaurantPages;
 
+import com.diegojacober.delivery.controller.RestaurantController;
+import com.diegojacober.delivery.model.OrderModel;
+import com.diegojacober.delivery.model.RestaurantModel;
+import com.diegojacober.delivery.model.UserModel;
+import com.diegojacober.delivery.services.PedidoService;
 import com.diegojacober.delivery.view.OrderPage;
+import com.diegojacober.delivery.view.RestaurantView;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,8 +17,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
-
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -20,16 +27,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import com.diegojacober.delivery.model.OrderModel;
-import com.diegojacober.delivery.model.UserModel;
-import com.diegojacober.delivery.services.PedidoService;
-import com.diegojacober.delivery.view.ClientView;
-
-public class OrdersPage extends ClientView {
-
+public class OrdersPage extends RestaurantView{
+    
     private JPanel panel;
     private JPanel centeredPanel;
     private JScrollPane panelScrollable;
+    private RestaurantController restaurantController;
+    RestaurantModel restaurant;
 
     public OrdersPage(UserModel user) throws IOException {
         super(user);
@@ -39,13 +43,23 @@ public class OrdersPage extends ClientView {
         jBtnNextArrow.setVisible(false);
         loadOrders(user);
     }
-
+    
+    @Override
+    public void initPageComponents() {
+        loadComponents();
+        restaurantController = new RestaurantController();
+        try {
+            restaurant = restaurantController.controllerRetrieve(loggedUser.getName());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     private void loadOrders(UserModel user) {
-        List<OrderModel> orders = PedidoService.getOrdersByUser(user);
-
+        List<OrderModel> orders = PedidoService.getOrdersByRestaurant(restaurant.getId(), loggedUser);
         orders.forEach(order -> {;
 
-            String txt = "R$ " + order.getTotal() + " - " + order.getRestaurantName() + " (" + order.getDate() + ")";
+            String txt = "R$ " + order.getTotal() + " - " + order.getClientName()+ " (" + order.getDate() + ")";
 
             JButton btn = createButton(txt, order);
 
@@ -56,8 +70,8 @@ public class OrdersPage extends ClientView {
             panelScrollable.setVisible(true);
         });
     }
-
-    private JButton createButton(String txt, OrderModel order) {
+    
+        private JButton createButton(String txt, OrderModel order) {
         JButton btn = new JButton(txt);
         btn.setPreferredSize(new Dimension(950, 100));
 
@@ -69,7 +83,7 @@ public class OrdersPage extends ClientView {
         btn.setBackground(bgColor);
         btn.setFont(new Font("Segoe UI", 0, 24));
         btn.setForeground(new Color(51, 51, 51));
-        btn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         btn.addActionListener(new ActionListener() {
             @Override
@@ -106,8 +120,10 @@ public class OrdersPage extends ClientView {
         return btn;
     }
 
+    
+    
     private void loadComponents() {
-        panel = new JPanel();
+          panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
         centeredPanel = new JPanel(new GridBagLayout());
@@ -123,17 +139,13 @@ public class OrdersPage extends ClientView {
     }
 
     @Override
-    public void initPageComponents() {
-        loadComponents();
-    }
-
-    @Override
     public void nextButton() {
+        
     }
 
     @Override
     public void backButton() {
-
+        
     }
-
+   
 }

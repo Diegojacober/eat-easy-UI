@@ -1,4 +1,4 @@
-package com.diegojacober.delivery.view.ClientPages;
+package com.diegojacober.delivery.view;
 
 import java.awt.Color;
 import java.text.NumberFormat;

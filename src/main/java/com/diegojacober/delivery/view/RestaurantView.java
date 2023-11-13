@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
+import com.diegojacober.delivery.view.RestaurantPages.OrdersPage;
 import com.diegojacober.delivery.view.RestaurantPages.ProductsPage;
 import java.sql.SQLException;
 
@@ -214,7 +215,15 @@ public abstract class RestaurantView extends JFrame {
     }
     
     private void jbtnOrders1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOrders1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            OrdersPage ordersPage = new OrdersPage(loggedUser);
+            ordersPage.setVisible(true);
+            ordersPage.pack();
+            ordersPage.setLocationRelativeTo(null);
+            this.dispose();
+        } catch (IOException ex) {
+            System.out.println("ERRO:" + ex.getMessage());
+        }
     }//GEN-LAST:event_jbtnOrders1ActionPerformed
   
     private void jbtnItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnItemsActionPerformed
