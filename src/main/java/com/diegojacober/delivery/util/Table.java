@@ -49,7 +49,7 @@ public class Table {
 
             table.getColumnModel().getColumn(i).setMaxWidth(Integer.parseInt(width[i].toString())
             );
-            
+
             table.getColumnModel().getColumn(i).setResizable(true);
 
             table.getColumnModel().getColumn(i).setCellRenderer(

@@ -36,7 +36,6 @@ public class Chart {
             dataset.addValue(products.get(2).getSalesQuantity(), products.get(2).getProductName(), NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(products.get(2).getSalesTotal()));
             dataset.addValue(products.get(3).getSalesQuantity(), products.get(3).getProductName(), NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(products.get(3).getSalesTotal()));
         }
-
         return dataset;
     }
 

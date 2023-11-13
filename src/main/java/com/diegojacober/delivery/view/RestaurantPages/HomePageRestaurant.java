@@ -42,12 +42,12 @@ public class HomePageRestaurant extends RestaurantView {
                 for (int i = 0; i < 4; i++) {
                     try {
                         productsSales.add(SalesService.getSalesProduct(loggedUser, produtos.get(i).getId()));
-                        JPanel chartPanel = Chart.createChartPanel(productsSales);
-                        jpContent.add(chartPanel);
                     } catch (NullPointerException ex) {
                         JOptionPane.showMessageDialog(null, "Vendas insuficientes para um dashboard");
                     }
                 }
+                JPanel chartPanel = Chart.createChartPanel(productsSales);
+                jpContent.add(chartPanel);
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum produto ou venda cadastrado");
             }
