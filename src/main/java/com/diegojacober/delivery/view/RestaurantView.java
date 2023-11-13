@@ -9,20 +9,18 @@ import com.diegojacober.delivery.model.UserModel;
 import com.diegojacober.delivery.services.UserService;
 import com.diegojacober.delivery.view.RestaurantPages.HomePageRestaurant;
 import com.diegojacober.delivery.view.RestaurantPages.ProductsPage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.SQLException;
 
 public abstract class RestaurantView extends JFrame {
     
     public UserModel loggedUser;
-
+    
     public abstract void initPageComponents();
 
     public abstract void nextButton();
 
     public abstract void backButton();
     
-
     public RestaurantView(UserModel user) throws IOException {
         this.setIconImage(ImageIO.read(getClass().getResource("/com/diegojacober/delivery/img/delivery.png")));
         this.loggedUser = user;
@@ -30,6 +28,8 @@ public abstract class RestaurantView extends JFrame {
         initPageComponents();
     }
 
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -225,7 +225,9 @@ public abstract class RestaurantView extends JFrame {
             productsPage.setLocationRelativeTo(null);
             this.dispose();
         } catch (IOException ex) {
-            Logger.getLogger(RestaurantView.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERRO:" + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("ERRO:" + ex.getMessage());
         }
     }//GEN-LAST:event_jbtnItemsActionPerformed
 

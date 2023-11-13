@@ -38,12 +38,15 @@ public class HomePageRestaurant extends RestaurantView {
         try {
             RestaurantModel restaurant = restaurantController.controllerRetrieve(loggedUser.getName());
             List<ProductModel> produtos = productController.controllerRetrieve(restaurant.getId());
-            if (produtos.size() > 0) {
+            if (produtos.size() >= 4) {
                 for (int i = 0; i < 4; i++) {
-                    productsSales.add(SalesService.getSalesProduct(loggedUser, produtos.get(i).getId()));
-                    productsSales.forEach(System.out::println);
-                    JPanel chartPanel = Chart.createChartPanel(productsSales);
-                    jpContent.add(chartPanel);
+                    try {
+                        productsSales.add(SalesService.getSalesProduct(loggedUser, produtos.get(i).getId()));
+                        JPanel chartPanel = Chart.createChartPanel(productsSales);
+                        jpContent.add(chartPanel);
+                    } catch (NullPointerException ex) {
+                        JOptionPane.showMessageDialog(null, "Vendas insuficientes para um dashboard");
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum produto ou venda cadastrado");
